@@ -23,4 +23,13 @@
         $categories = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return($categories);
     }
+    public function getPlans($id){
+        $db=$this->createConection();
+        $sentencia = $db->prepare("SELECT categorias.categoria, planes.plan,
+         planes.cobertura, planes.descripcion FROM categorias JOIN planes ON 
+        categorias.id_categoria=planes.id_categoria_fk WHERE categorias.id_categoria=?");
+        $sentencia->execute([$id]); 
+        $planes = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return ($planes);
+    }
  }
