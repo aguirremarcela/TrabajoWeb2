@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2020 at 10:47 PM
+-- Generation Time: May 07, 2020 at 01:33 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -54,7 +54,7 @@ CREATE TABLE `planes` (
   `id_planes` int(10) NOT NULL,
   `plan` varchar(100) NOT NULL,
   `cobertura` varchar(300) NOT NULL,
-  `descripción` text NOT NULL,
+  `descripcion` text NOT NULL,
   `id_categoria_fk` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -62,8 +62,10 @@ CREATE TABLE `planes` (
 -- Dumping data for table `planes`
 --
 
-INSERT INTO `planes` (`id_planes`, `plan`, `cobertura`, `descripción`, `id_categoria_fk`) VALUES
-(1, 'Plan Básico', 'Responsabilidad Civil\r\n', 'Esta cobertura comprende la indemnización por los daños que el asegurado, o un conductor autorizado por éste, pueden ocasionarle a un tercero, por el vehículo asegurado o por la carga transportada en condiciones reglamentarias.\r\nResponsabilidad Civil es hasta $ 10.000.000 para las categorías autos, camionetas, vehículos remolcados y casas rodantes. Para camiones, semitracciones, acoplados, maquinarias rurales, la suma asciende a $18.000.000.\r\n\r\n', 1);
+INSERT INTO `planes` (`id_planes`, `plan`, `cobertura`, `descripcion`, `id_categoria_fk`) VALUES
+(1, 'Póliza Básica', 'Responsabilidad Civil\r\n', 'Esta cobertura comprende la indemnización por los daños que el asegurado, o un conductor autorizado por éste, pueden ocasionarle a un tercero, por el vehículo asegurado o por la carga transportada en condiciones reglamentarias.\r\nResponsabilidad Civil es hasta $ 10.000.000 para las categorías autos, camionetas, vehículos remolcados y casas rodantes. Para camiones, semitracciones, acoplados, maquinarias rurales, la suma asciende a $18.000.000.\r\n\r\n', 1),
+(2, 'Póliza Clásica', 'Responsabilidad Civil.\r\nPérdida Total por Robo y/o Hurto sin franquicia.\r\nPérdida Total por Incendio sin franquicia.\r\nGranizo.\r\nSeguro de Accidentes personales, en caso de fallecimiento, de $2.500 (por cada ocupante).\r\nAsistencia en Viaje las 24 hs.\r\nDefensa Penal. \r\nAsistencia al vehículo: Mecánica', 'La cobertura principal consiste en asegurar los daños causados a terceros en el uso del vehículo (Responsabilidad Civil del automóvil). Cabe resaltar que todo propietario de vehículos a motor posee la obligación de contar con un seguro para poder circular.\r\nEn caso de robo y/o hurto de tu unidad, MARTA abonará el valor del vehículo asegurado hasta el 100% de la suma asegurada, sin ninguna franquicia.\r\nA la vez, el incendio total de la unidad será abonado sin ninguna franquicia a tu cargo.\r\n\r\nAsimismo, contarás con asistencia personalizada legal ante un siniestro en el cual se haya producido alguna lesión, servicio de asistencia y remolque de MAPFRE, extensión de cobertura a países limítrofes y del Mercosur, y seguro de Accidentes personales, en caso de fallecimiento, por cada ocupante.', 1),
+(3, 'Poliza Granizo', 'Para los Girasoles y Maices', 'asbdhas asjfbafba jascbadofbad ajbcaioc', 6);
 
 --
 -- Indexes for dumped tables
@@ -96,7 +98,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `planes`
 --
 ALTER TABLE `planes`
-  MODIFY `id_planes` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_planes` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
