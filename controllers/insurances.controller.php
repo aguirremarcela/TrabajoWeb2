@@ -13,7 +13,14 @@ class InsurancesController{
     }
     public function showInsurances(){
         $categorias=$this->model->getCategory();
-            
+     
         $this->view->showInsurances($categorias);
+    }
+    public function showPlans($id){
+        $planes=$this->model->getPlans($id);
+
+        $this->view->showPlans($planes);
+        
+
     }
 }
