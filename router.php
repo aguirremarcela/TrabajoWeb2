@@ -7,7 +7,7 @@
 
     // define una acción por defecto
     if (empty($_GET['action'])) {
-        $_GET['action'] = 'listar';
+        $_GET['action'] = 'home';
     } 
 
     // toma la acción que viene del usuario y parsea los parámetros
@@ -17,11 +17,11 @@
 
     // decide que camino tomar según TABLA DE RUTEO
     switch ($parametros[0]) {
-        case 'listar': 
+        case 'home': 
             $controller= new InsurancesController();
             $controller->showInsurances();
         break;
-        case 'vermas':
+        case 'seePlansCategory':
             $controller= new InsurancesController();
             $controller->showPlans($parametros[1]);
         break;
