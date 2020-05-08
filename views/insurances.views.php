@@ -1,47 +1,54 @@
 <?php
-require_once ('libs/Smarty.class.php');
-class InsurancesView{
- 
-    public function showInsurances($seguros){
-        $smarty= new Smarty();
-        $smarty->assign('title','Seguros Marcin');
-        $smarty->display('header.tpl');
-        echo'<ul>';
-         foreach($seguros as $seguro){
-             $id=$seguro->id_categoria;
-             echo'<li><a href="seePlansCategory/'.$id.'">'. $seguro->categoria.'</a></li>';
-         }
-        echo '</u></body>
-         </html>';
-    }
-    public function showPlans($planes){
-        echo '<!DOCTYPE html>
-        <html lang="es">
-       <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Seguros</title>
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-       </head>
-       <body>
-       <nav class="navbar navbar-dark bg-dark">
-       <a class="navbar-brand" href="#">Seguros</a>
-       </nav>
-       <ul>';
-    
-       
-       foreach($planes as $plane){
+    require_once ('libs/Smarty.class.php');  
+    class InsurancesView{
 
-           $id=$plane->id_planes;
+        public function showInsurances($seguros){
+            $smarty= new Smarty();
+            $smarty->assign('base_url', BASE_URL);
+            $smarty->assign('title','Seguros Marcin');
+            $smarty->display('header.tpl');
+            echo'<ul>';
+            foreach($seguros as $seguro){
+                
+                $id=$seguro->id_categoria;
 
-          echo'<li><a href="descripcion/'.$id.'">'. $plane->plan.'</a></li>';
+            echo'<li><a type="submit" href="seePlansCategory/'.$id.'">'. $seguro->categoria.'</a></li>';
+            }
+            echo '</ul>
+                </body>
+            </html>';
+        }
+        public function showPlans($planes){
+            $smarty= new Smarty();
+            $smarty->assign('base_url', BASE_URL);
+            $smarty->assign('title','Seguros Marcin');
+            $smarty->display('header.tpl');
+            echo'<ul>';
 
-       //echo' <tr><td>'.$plane->cobertura.'</td><td>'.$plane->descripcion.'</td></tr>';
-           
-       }
+            foreach($planes as $plane){
 
-       echo '</ul></body>
-         </html>';
-    }
+                $id=$plane->id_planes;
 
+                echo '<li><a type="submit" href="showCoverage/'.$id.'">'. $plane->plan.'</a></li>';
+            }
+            echo '</ul>
+            </body>
+            </html>';
+        }
+        public function showCoverange($coveranges){
+            $smarty= new Smarty();
+            $smarty->assign('base_url', BASE_URL);
+            $smarty->assign('title','Seguros Marcin');
+            $smarty->display('header.tpl');
+        echo'<ul><table>';
+
+            foreach($coveranges as $coverange){
+        
+            echo' <tr><td>'.$coverange->cobertura.'</td><td>'.$coverange->descripcion.'</td></tr>';
+
+            }
+            echo '</table></ul>
+            </body>
+            </html>';
+        }
 }
