@@ -12,7 +12,7 @@
                 
                 $id=$seguro->id_categoria;
 
-            echo'<li><a type="submit" href="seePlansCategory/'.$id.'">'. $seguro->categoria.'</a></li>';
+            echo'<li><a href="seePlansCategory/'.$id.'">'. $seguro->categoria.'</a></li>';
             }
             echo '</ul>
                 </body>
@@ -40,13 +40,9 @@
             $smarty->assign('base_url', BASE_URL);
             $smarty->assign('title','Seguros Marcin');
             $smarty->display('header.tpl');
-        echo'<ul><table>';
-
-            foreach($coveranges as $coverange){
-        
-            echo' <tr><td>'.$coverange->cobertura.'</td><td>'.$coverange->descripcion.'</td></tr>';
-
-            }
+        echo'<ul><table>
+            <tr><td> Cobertura</td><td> Descripcion</td><tr>';
+            echo' <tr><td>'.$coveranges->cobertura.'</td><td>'.$coveranges->descripcion.'</td></tr>';
             echo '</table></ul>
             </body>
             </html>';
