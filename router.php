@@ -23,4 +23,5 @@
             $controller= new InsurancesController();
             $controller->showCoverange($parametros[1]);
         break;
+        
     }
