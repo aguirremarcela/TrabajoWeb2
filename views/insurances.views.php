@@ -2,49 +2,25 @@
     require_once ('libs/Smarty.class.php');  
     class InsurancesView{
 
-        public function showInsurances($seguros){
+        public function showInsurances($insurances){
             $smarty= new Smarty();
             $smarty->assign('base_url', BASE_URL);
             $smarty->assign('title','Seguros Marcin');
-            $smarty->display('header.tpl');
-            echo'<ul>';
-            foreach($seguros as $seguro){
-                
-                $id=$seguro->id_categoria;
-
-            echo'<li><a href="seePlansCategory/'.$id.'">'. $seguro->categoria.'</a></li>';
-            }
-            echo '</ul>
-                </body>
-            </html>';
+            $smarty->assign('insurances', $insurances);
+            $smarty->display('insurances.tpl');
         }
-        public function showPlans($planes){
+        public function showPlans($plans){
             $smarty= new Smarty();
             $smarty->assign('base_url', BASE_URL);
             $smarty->assign('title','Seguros Marcin');
-            $smarty->display('header.tpl');
-            echo'<ul>';
-
-            foreach($planes as $plane){
-
-                $id=$plane->id_planes;
-
-                echo '<li><a type="submit" href="showCoverage/'.$id.'">'. $plane->plan.'</a></li>';
-            }
-            echo '</ul>
-            </body>
-            </html>';
+            $smarty->assign('plans', $plans);
+            $smarty->display('plans.tpl');
         }
         public function showCoverange($coveranges){
             $smarty= new Smarty();
             $smarty->assign('base_url', BASE_URL);
             $smarty->assign('title','Seguros Marcin');
-            $smarty->display('header.tpl');
-        echo'<ul><table>
-            <tr><td> Cobertura</td><td> Descripcion</td><tr>';
-            echo' <tr><td>'.$coveranges->cobertura.'</td><td>'.$coveranges->descripcion.'</td></tr>';
-            echo '</table></ul>
-            </body>
-            </html>';
+            $smarty->assign('coveranges', $coveranges);
+            $smarty->display('coveranges.tpl');
         }
 }
