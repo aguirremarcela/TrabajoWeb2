@@ -1,0 +1,25 @@
+
+.cont_cat{
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    width: 90%;
+    flex-wrap: wrap
+}
+
+.caja{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    margin: 3% 6% 3% 6%;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+}
+.items{
+    text-decoration: none;
+    color: cornsilk;
+    font-family: cursive;
+    
+}
