@@ -19,10 +19,6 @@
             $this->smarty->assign('coveranges', $coveranges);
             $this->smarty->display('coveranges.tpl');
         }
-        public function formAdd($categorias){
-            $this->smarty->assign('categorias',$categorias);
-            $this->smarty->display('formAdd.tpl');
-        }
         public function showAllPlans($plans){
             $this->smarty->assign('plans', $plans);
             $this->smarty->display('deletePlans.tpl');
