@@ -1,5 +1,6 @@
 <?php
     require_once 'controllers/insurances.controller.php';
+    require_once 'controllers/admin.controller.php';
 
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -23,5 +24,20 @@
             $controller= new InsurancesController();
             $controller->showCoverange($parametros[1]);
         break;
-        
+        case'admin':
+            $controller= new AdminController();
+            $controller->showForm();
+        break;
+        case 'insertCategory':
+            $controller= new AdminController();
+            $controller->addCategory(); 
+        break;
+        case'insertPlan':
+            $controller= new AdminController();
+            $controller->addPlan();    
+        break;
+        case'deletePlan':
+            $controller= new AdminController();
+            $controller->deletePlan(); 
+        break;    
     }
