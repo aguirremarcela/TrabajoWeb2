@@ -53,7 +53,6 @@
             $sentencia=$db->prepare("SELECT * FROM planes");
             $sentencia->execute();
             $plans=$sentencia->fetchAll(PDO::FETCH_OBJ);
-            return($plans);
-            
+            return($plans);    
         }
  }  
