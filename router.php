@@ -26,18 +26,27 @@
         break;
         case'admin':
             $controller= new AdminController();
-            $controller->showForm();
+            $controller->showABM();
+        break;
+        case 'showAddCategory':
+            $controller= new AdminController();
+            $controller->showAddCategory();
         break;
         case 'insertCategory':
             $controller= new AdminController();
             $controller->addCategory(); 
         break;
+        case 'showAddPlan':
+            $controller= new AdminController();
+            $controller->showAddplan();
+        break;
         case'insertPlan':
             $controller= new AdminController();
             $controller->addPlan();    
         break;
+        /*
         case'deletePlan':
             $controller= new AdminController();
             $controller->deletePlan(); 
-        break;    
+        break; */   
     }
