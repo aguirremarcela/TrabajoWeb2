@@ -38,4 +38,22 @@
             $plan = $sentencia->fetch(PDO::FETCH_OBJ);
             return ($plan);
         }
+        public function insertCategory($categoria){
+            $db=$this->createConection();
+            $sentencia = $db->prepare("INSERT INTO categorias(categoria) VALUES(?)");
+            $sentencia->execute([$categoria]);
+        }
+        public function insertPlan($plan,$cobertura,$descripcion, $id_categoria){
+            $db=$this->createConection();
+            $sentencia = $db->prepare("INSERT INTO planes (plan, cobertura, descripcion, id_categoria_fk) VALUES (?,?,?,?)");
+            $sentencia->execute([$plan,$cobertura,$descripcion,$id_categoria]);
+        }
+        public function getAllPlans(){
+            $db=$this->createConection();
+            $sentencia=$db->prepare("SELECT * FROM planes");
+            $sentencia->execute();
+            $plans=$sentencia->fetchAll(PDO::FETCH_OBJ);
+            return($plans);
+            
+        }
  }  
