@@ -1,3 +1,4 @@
+{include "header.tpl"}
 <table>
     <thead>
         <tr>
@@ -6,14 +7,14 @@
         </tr>
     </thead>
 <tbody>
-
 {foreach from=$plans item=plan }
     <tr>
         <td>{$plan->plan}</td>
         <td>
-        <button id="{$plan->id_planes}">Eliminar</button>
+            <a type="button" class="btn btn-danger" href="deletePlan/{$plan->id_planes}">Eliminar</a>
         </td>
     </tr>   
 {/foreach}
 </tbody>
 </table>
+{include "footer.tpl"}
