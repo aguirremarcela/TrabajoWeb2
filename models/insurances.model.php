@@ -55,4 +55,14 @@
             $plans=$sentencia->fetchAll(PDO::FETCH_OBJ);
             return($plans);    
         }
+        public function deletePlan($id){
+            $db = $this->createConection();
+            $sentencia=$db->prepare("DELETE FROM planes  WHERE id_planes=?");
+            $sentencia->execute([$id]);
+        }
+        public function deleteCategory($id){
+            $db = $this->createConection();
+            $sentencia=$db->prepare("DELETE FROM categorias  WHERE id_categoria=?");
+            $sentencia->execute([$id]);
+        }
  }  
