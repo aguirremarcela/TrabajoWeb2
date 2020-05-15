@@ -41,10 +41,20 @@
             echo"<p>no se puede insertar un</p>";
         }
     }
-    /*
-    public function deletePlan(){
+    public function showDeleteCategory(){
+        $categories=$this->model->getCategory();
+        $this->view->showAllCategories($categories);
+    }
+    public function deleteCategory($id){
+        $this->model->deleteCategory($id);
+        header('location:'.BASE_URL.'showDeleteCategory');
+    }
+    public function showDeletePlan(){
         $plans=$this->model->getAllPlans();
         $this->view->showAllPlans($plans);
-
-    }*/
+    }
+    public function deletePlan($id){
+        $this->model->deletePlan($id);
+        header('location:'.BASE_URL.'showDeletePlan');
+    }
  }
