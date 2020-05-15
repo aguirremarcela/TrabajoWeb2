@@ -44,9 +44,22 @@
             $controller= new AdminController();
             $controller->addPlan();    
         break;
-        /*
-        case'deletePlan':
+        case 'showDeleteCategory':
             $controller= new AdminController();
-            $controller->deletePlan(); 
-        break; */   
+            $controller->showDeleteCategory();
+        break;
+        case 'deleteCategory':
+            $controller= new AdminController();
+            $controller->deleteCategory($parametros[1]);
+        default:
+        case 'showDeletePlan':
+            $controller= new AdminController();
+            $controller->showDeletePlan();  
+        break;
+        case 'deletePlan':
+            $controller= new AdminController();
+            $controller->deletePlan($parametros[1]);
+        break;
+            echo "404 NOT FOUND";
+        break;
     }
