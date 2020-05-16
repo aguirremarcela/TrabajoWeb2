@@ -25,7 +25,7 @@
         }
     }
     public function showAddplan(){
-        $categorias=$this->model->getCategory();
+        $categorias=$this->model->getAllCategory();
         $this->view->showAddplan($categorias);                                    
     }
     public function addPlan(){
@@ -42,7 +42,7 @@
         }
     }
     public function showDeleteCategory(){
-        $categories=$this->model->getCategory();
+        $categories=$this->model->getAllCategory();
         $this->view->showAllCategories($categories);
     }
     public function deleteCategory($id){
@@ -56,5 +56,25 @@
     public function deletePlan($id){
         $this->model->deletePlan($id);
         header('location:'.BASE_URL.'showDeletePlan');
+    }
+    public function showEditCategory(){
+        $categories=$this->model->getAllCategory();
+        $this->view->showEditCategory($categories);
+    }
+    public function editCategory($id){
+        $category=$this->model->getCategory($id);
+        $this->view->editCategory($category);
+    }
+    public function saveEditCategory(){
+        $category = $_POST['categoria'];
+        $id_category=$_POST['id_categoria'];
+        if(!empty($category) && !empty($id_category)){
+            $this->model->saveEditCategory($category,$id_category);
+            header('location:'.BASE_URL.'showEditCategory');
+        }
+        else{
+            echo"<p>No se puede editar</p>";
+        }
+
     }
  }
