@@ -10,7 +10,7 @@
             $this->view=new InsurancesView();
         }
         public function showInsurances(){
-            $categorias=$this->model->getCategory();
+            $categorias=$this->model->getAllCategory();
             $this->view->showInsurances($categorias);
         }
         public function showPlans($id){
