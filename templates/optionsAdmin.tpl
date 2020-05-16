@@ -3,6 +3,6 @@
 <a href="showAddPlan">Agregar planes</a><br>
 <a href="showDeleteCategory">Eliminar categorias</a><br>
 <a href="showDeletePlan">Eliminar planes</a><br>
-<a href="">Editar categorias</a><br>
-<a href="">Editar planes</a>
+<a href="showEditCategory">Editar categorias</a><br>
+<a href="showEditPlan">Editar planes</a>
 {include "footer.tpl"}
