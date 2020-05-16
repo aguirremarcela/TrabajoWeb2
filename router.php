@@ -51,7 +51,7 @@
         case 'deleteCategory':
             $controller= new AdminController();
             $controller->deleteCategory($parametros[1]);
-        default:
+        break;
         case 'showDeletePlan':
             $controller= new AdminController();
             $controller->showDeletePlan();  
@@ -60,6 +60,19 @@
             $controller= new AdminController();
             $controller->deletePlan($parametros[1]);
         break;
+        case'showEditCategory':
+            $controller=new AdminController();
+            $controller->showEditCategory();
+        break;
+        case'editCategory':
+            $controller=new AdminController();
+            $controller->editCategory($parametros[1]);
+        break;
+        case'saveEditCategory':
+            $controller=new AdminController();
+            $controller->saveEditCategory();
+        break;
+        default:
             echo "404 NOT FOUND";
         break;
     }
