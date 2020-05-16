@@ -25,4 +25,12 @@ class adminView{
         $this->smarty->assign('categories', $categories);
         $this->smarty->display('deleteCategories.tpl');
     }
+    public function showEditCategory($categories){
+        $this->smarty->assign("categories", $categories);
+        $this->smarty->display('formEditCategory.tpl');
+    }
+    public function editCategory($category){
+        $this->smarty->assign('category',$category);
+        $this->smarty->display('editCategory.tpl');
+    }
 }
