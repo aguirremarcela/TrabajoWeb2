@@ -13,7 +13,7 @@
             }
             return $pdo;
         }
-        public function getCategory(){
+        public function getAllCategory(){
             $db =$this->createConection();
             $sentencia = $db->prepare("SELECT * FROM categorias"); 
             $sentencia->execute(); 
@@ -64,5 +64,17 @@
             $db = $this->createConection();
             $sentencia=$db->prepare("DELETE FROM categorias  WHERE id_categoria=?");
             $sentencia->execute([$id]);
+        }
+        public function getCategory($id){
+            $db =$this->createConection();
+            $sentencia = $db->prepare("SELECT * FROM categorias WHERE categorias.id_categoria=?"); 
+            $sentencia->execute([$id]); 
+            $category = $sentencia->fetch(PDO::FETCH_OBJ);
+            return($category);
+        }
+        public function saveEditCategory($name,$id_category){
+            $db =$this->createConection();
+            $sentencia = $db->prepare("UPDATE categorias SET categoria =  ?  WHERE categorias.id_categoria = ?");
+            $sentencia->execute([$name,$id_category]); 
         }
  }  
