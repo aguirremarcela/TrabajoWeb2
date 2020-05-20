@@ -33,4 +33,12 @@ class adminView{
         $this->smarty->assign('category',$category);
         $this->smarty->display('editCategory.tpl');
     }
+    public function showEditPlans($plans){
+        $this->smarty->assign("plans", $plans);
+        $this->smarty->display('formEditPlans.tpl');
+    }
+    public function editPlan($plan){
+        $this->smarty->assign('plan',$plan);
+        $this->smarty->display('editPlan.tpl');
+    }
 }
