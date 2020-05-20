@@ -75,6 +75,26 @@
         else{
             echo"<p>No se puede editar</p>";
         }
-
+    }
+    public function showEditPlans(){
+        $plans=$this->model->getAllPlans();
+        $this->view->showEditPlans($plans);
+    }
+    public function editPlan($id){
+        $plan=$this->model->getPlan($id);
+        $this->view->editPlan($plan);
+    }
+    public function saveEditPlan(){
+        $plan = $_POST['plan'];
+        $cobertura = $_POST['cobertura'];
+        $descripcion = $_POST['descripcion'];
+        $id_planes=$_POST['id_planes'];
+        if(!empty($plan) && !empty($cobertura) && !empty($descripcion) && !empty($id_planes)){
+            $this->model->saveEditPlan($plan, $cobertura, $descripcion, $id_planes);
+            header('location:'.BASE_URL.'showEditPlans');
+        }
+        else{
+            echo"<p>No se puede editar</p>";
+        }
     }
  }
