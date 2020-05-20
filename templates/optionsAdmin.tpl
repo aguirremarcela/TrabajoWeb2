@@ -4,5 +4,5 @@
 <a href="showDeleteCategory">Eliminar categorias</a><br>
 <a href="showDeletePlan">Eliminar planes</a><br>
 <a href="showEditCategory">Editar categorias</a><br>
-<a href="showEditPlan">Editar planes</a>
+<a href="showEditPlans">Editar planes</a>
 {include "footer.tpl"}
