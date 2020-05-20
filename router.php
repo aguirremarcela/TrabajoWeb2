@@ -72,6 +72,18 @@
             $controller=new AdminController();
             $controller->saveEditCategory();
         break;
+        case'showEditPlans':
+            $controller=new AdminController();
+            $controller->showEditPlans();
+        break;
+        case'editPlan':
+            $controller=new AdminController();
+            $controller->editPlan($parametros[1]);
+        break;
+        case'saveEditPlan':
+            $controller=new AdminController();
+            $controller->saveEditPlan();
+        break;
         default:
             echo "404 NOT FOUND";
         break;
