@@ -77,4 +77,9 @@
             $sentencia = $db->prepare("UPDATE categorias SET categoria =  ?  WHERE categorias.id_categoria = ?");
             $sentencia->execute([$name,$id_category]); 
         }
+        public function saveEditPlan($plan, $cobertura, $descripcion, $id_planes){
+            $db =$this->createConection();
+            $sentencia = $db->prepare("UPDATE planes SET plan =  ?, cobertura = ?, descripcion = ?  WHERE planes.id_planes = ?");
+            $sentencia->execute([$plan, $cobertura, $descripcion, $id_planes]); 
+        }
  }  
