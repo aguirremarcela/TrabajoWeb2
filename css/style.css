@@ -1,11 +1,16 @@
 body{
-    background: linear-gradient(to top, #232526, #414345);
+    background: linear-gradient(to top, #232526, #555758);
+    background-attachment: fixed;
 }
 .navbar-brand {
     padding-bottom: 1rem;
     margin-right: 2rem;
     margin-left: 2rem;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+.logo{
+    width: 180px;
+    margin: 40px 0 0 60px;
 }
 .cont_cat{
     align-items: center;
@@ -23,20 +28,22 @@ body{
     width: 160px;
     height: 160px;
     background: linear-gradient(to left, #256779, #7dc1a3);
+    background-size: 100%;
     margin: 3% 6% 3% 6%;
     display: flex;
     justify-content: center;
     align-items:center ;
-    border:2px solid #000b13c2;
+    border:3px solid #161616;
 }
 .caja:hover{
     background: linear-gradient(to right,#dc5f6ebf,#e64f36d1);
     color:white;
 }
 .items{
-    color:#232323;
+    color:white;
+    text-shadow: 0.1em 0.1em black;
     text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 .items:hover{
     font-size: 22px;
