@@ -9,6 +9,9 @@
         $this->model=new InsurancesModel();
         $this->view=new adminView();
     }
+    public function login(){
+        $this->view->formLogin();
+    }
     public function showABM(){
         $this->view->showABM();
     }
