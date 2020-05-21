@@ -26,6 +26,10 @@
         break;
         case'admin':
             $controller= new AdminController();
+            $controller->login();
+        break;
+        case'showABM':
+            $controller= new AdminController();
             $controller->showABM();
         break;
         case 'showAddCategory':
