@@ -20,8 +20,9 @@
     }
     public function addCategory(){
         $categoria=$_POST['categoria'];
+        $imagen=$_POST['imagen'];
         if(!empty($categoria)){ 
-            $this->model->insertCategory($categoria);
+            $this->model->insertCategory($categoria,$imagen);
         }
         else{
             echo'<p>no se puede ingresar campo vacio</p>';
