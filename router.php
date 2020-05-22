@@ -22,7 +22,7 @@
         break;
         case 'showCoverage':
             $controller= new InsurancesController();
-            $controller->showCoverange($parametros[1]);
+            $controller->showCoverange($parametros[1],$parametros[2]);
         break;
         case'admin':
             $controller= new AdminController();
