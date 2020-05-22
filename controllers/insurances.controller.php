@@ -17,8 +17,9 @@
             $planes=$this->model->getPlans($id);
             $this->view->showPlans($planes);
         }
-        public function showCoverange($id_plan){
+        public function showCoverange($id_plan, $id_categoria){
             $coverange=$this->model->getPlan($id_plan);
-            $this->view->showCoverange($coverange);
+            $planes=$this->model->getPlans($id_categoria);
+            $this->view->showCoverange($coverange, $planes);
         }
 }
