@@ -23,6 +23,7 @@
         $imagen=$_POST['imagen'];
         if(!empty($categoria)){ 
             $this->model->insertCategory($categoria,$imagen);
+            header('location:'.BASE_URL.'showAddCategory');
         }
         else{
             echo'<p>no se puede ingresar campo vacio</p>';
@@ -39,7 +40,7 @@
         $id_categoria=$_POST['id_categoria_fk'];
         if(!empty($plan)&& !empty($cobertura) && !empty($id_categoria) ){
             $this->model->insertPlan($plan,$cobertura,$descripcion,$id_categoria);
-            //analizar donde se van a mostar esa categoria agregada
+            header('location:'.BASE_URL.'showAddPlan');
         }
         else{
             echo"<p>no se puede insertar un</p>";
@@ -72,8 +73,9 @@
     public function saveEditCategory(){
         $category = $_POST['categoria'];
         $id_category=$_POST['id_categoria'];
+        $imagen=$_POST['imagen'];
         if(!empty($category) && !empty($id_category)){
-            $this->model->saveEditCategory($category,$id_category);
+            $this->model->saveEditCategory($category,$imagen,$id_category);
             header('location:'.BASE_URL.'showEditCategory');
         }
         else{
