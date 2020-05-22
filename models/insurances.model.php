@@ -23,7 +23,7 @@
         public function getPlans($id){
             $db=$this->createConection();
             $sentencia = $db->prepare("SELECT categorias.categoria, planes.id_planes, planes.plan,
-             planes.cobertura, planes.descripcion FROM categorias JOIN planes ON 
+             planes.cobertura, planes.descripcion, planes.id_categoria_fk FROM categorias JOIN planes ON 
             categorias.id_categoria=planes.id_categoria_fk WHERE categorias.id_categoria=?");
             $sentencia->execute([$id]); 
             $planes = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -38,10 +38,10 @@
             $plan = $sentencia->fetch(PDO::FETCH_OBJ);
             return ($plan);
         }
-        public function insertCategory($categoria){
+        public function insertCategory($categoria, $imagen){
             $db=$this->createConection();
-            $sentencia = $db->prepare("INSERT INTO categorias(categoria) VALUES(?)");
-            $sentencia->execute([$categoria]);
+            $sentencia = $db->prepare("INSERT INTO categorias(categoria, imagen) VALUES(?,?)");
+            $sentencia->execute([$categoria,$imagen]);
         }
         public function insertPlan($plan,$cobertura,$descripcion, $id_categoria){
             $db=$this->createConection();
