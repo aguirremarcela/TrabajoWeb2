@@ -72,10 +72,10 @@
             $category = $sentencia->fetch(PDO::FETCH_OBJ);
             return($category);
         }
-        public function saveEditCategory($name,$id_category){
+        public function saveEditCategory($name,$imagen,$id_category){
             $db =$this->createConection();
-            $sentencia = $db->prepare("UPDATE categorias SET categoria =  ?  WHERE categorias.id_categoria = ?");
-            $sentencia->execute([$name,$id_category]); 
+            $sentencia = $db->prepare("UPDATE categorias SET categoria =  ?, imagen = ?  WHERE categorias.id_categoria = ?");
+            $sentencia->execute([$name,$imagen,$id_category]); 
         }
         public function saveEditPlan($plan, $cobertura, $descripcion, $id_planes){
             $db =$this->createConection();
