@@ -15,12 +15,9 @@
             $this->smarty->assign('plans', $plans);
             $this->smarty->display('plans.tpl');
         }
-        public function showCoverange($coveranges){
+        public function showCoverange($coveranges,$planes){
             $this->smarty->assign('coveranges', $coveranges);
+            $this->smarty->assign('plans',$planes);
             $this->smarty->display('coveranges.tpl');
         }
-/*        public function showAllPlans($plans){
-            $this->smarty->assign('plans', $plans);
-            $this->smarty->display('.tpl');<------------incluir tpl
-        }  */
 }
