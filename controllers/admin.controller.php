@@ -16,7 +16,8 @@
         $this->view->showABM();
     }
     public function showAddCategory(){
-        $this->view->formAddCategory();
+        $categories=$this->model->getAllCategory();
+        $this->view->formAddCategory($categories);
     }
     public function addCategory(){
         $categoria=$_POST['categoria'];
@@ -30,8 +31,9 @@
         }
     }
     public function showAddplan(){
-        $categorias=$this->model->getAllCategory();
-        $this->view->showAddplan($categorias);                                    
+        $categories=$this->model->getAllCategory();
+        $plans=$this->model->getAllPlans();
+        $this->view->showAddplan($categories, $plans);                                    
     }
     public function addPlan(){
         $plan = $_POST['plan'];
