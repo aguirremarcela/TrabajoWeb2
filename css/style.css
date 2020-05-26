@@ -1,6 +1,7 @@
 body{
     background: linear-gradient(to top, #232526, #555758);
     background-attachment: fixed;
+    color:rgb(228, 228, 228);
 }
 .navbar-brand {
     padding-bottom: 1rem;
