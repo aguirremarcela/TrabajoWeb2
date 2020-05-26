@@ -1,4 +1,5 @@
 {include 'header.tpl'}
+{include "navAbm.tpl"}
 <form action="saveEditPlan" method="POST">
 <input type="hidden" name="id_planes" value="{$plan->id_planes}">
 <input type="text" name="plan" value="{$plan->plan}">
