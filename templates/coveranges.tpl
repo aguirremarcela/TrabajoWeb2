@@ -2,9 +2,8 @@
 <h1>{$plans[0]->categoria}</h1>
 <ul>
     {foreach from=$plans item=plan}
-    {$id_cat=$plan->id_categoria_fk}
     {$id=$plan->id_planes}
-    <li><a href="showCoverage/{$id}/{$id_cat}">{$plan->plan}</a></li>
+    <li><a href="showCoverage/{$id}">{$plan->plan}</a></li>
     {/foreach}
 </ul>
 <h1>{$coveranges->plan}</h1>
