@@ -23,7 +23,7 @@
         break;
         case 'showCoverage':
             $controller= new InsurancesController();
-            $controller->showCoverange($parametros[1],$parametros[2]);
+            $controller->showCoverange($parametros[1]);
         break;
         case'admin':
             $controller= new AuthController();
@@ -33,6 +33,10 @@
             $controller=new AuthController();
             $controller->verify();
         break;
+        case 'logout':
+            $controller=new AuthController();
+            $controller->logout();
+        break;    
         case'showABM':
             $controller= new AdminController();
             $controller->showABM();
@@ -94,6 +98,7 @@
             $controller->saveEditPlan();
         break;
         default:
-            echo "404 NOT FOUND";
+        $controller= new InsurancesController();
+        $controller->showError();
         break;
     }
