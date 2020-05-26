@@ -1,6 +1,7 @@
 <?php
     require_once 'controllers/insurances.controller.php';
     require_once 'controllers/admin.controller.php';
+    require_once 'controllers/auth.controller.php';
 
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -25,8 +26,12 @@
             $controller->showCoverange($parametros[1],$parametros[2]);
         break;
         case'admin':
-            $controller= new AdminController();
-            $controller->login();
+            $controller= new AuthController();
+            $controller->showLogin();
+        break;
+        case 'verify':
+            $controller=new AuthController();
+            $controller->verify();
         break;
         case'showABM':
             $controller= new AdminController();
