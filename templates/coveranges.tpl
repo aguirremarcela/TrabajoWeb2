@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include "header.tpl"}
 <h1>{$plans[0]->categoria}</h1>
 <ul>
     {foreach from=$plans item=plan}
@@ -18,4 +18,4 @@
         <td>{$coveranges->descripcion}</td>
     </tr>
 </table>
-{include file="footer.tpl"}
+{include "footer.tpl"}

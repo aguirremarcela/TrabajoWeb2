@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include "header.tpl"}
 {if !empty($plans[0]->categoria)}
     <h1>{$plans[0]->categoria}</h1>
 {/if}
@@ -9,4 +9,4 @@
     <li><a href="showCoverage/{$id}/{$id_cat}">{$plan->plan}</a></li>
     {/foreach}
 </ul>
-{include file="footer.tpl"}
+{include "footer.tpl"}
