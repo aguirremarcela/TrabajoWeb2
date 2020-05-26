@@ -1,5 +1,5 @@
 {include "header.tpl"}
-<h1>Nuestros Seguros</h1>
+<h1 class="titulo_seguros">Nuestros Seguros</h1>
 <div class="cont_cat">
     {foreach from=$insurances item=insurance}
     {$id=$insurance->id_categoria}
