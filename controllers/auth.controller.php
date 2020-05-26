@@ -9,7 +9,7 @@ class AuthController{
         $this->view=new AuthView();
     }
     public function showLogin(){
-        
+        $this->view->formLogin();
     }
     public function verify(){
         $username=$_POST['username'];
