@@ -4,8 +4,8 @@ body{
 }
 .navbar-brand {
     padding-bottom: 1rem;
-    margin-right: 2rem;
-    margin-left: 2rem;
+    margin-right: 4rem;
+    margin-left: 4rem;
     font-family: 'Poppins', sans-serif;
 }
 .logo{
