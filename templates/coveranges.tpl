@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+<h1>{$plans[0]->categoria}</h1>
 <ul>
     {foreach from=$plans item=plan}
     {$id_cat=$plan->id_categoria_fk}
