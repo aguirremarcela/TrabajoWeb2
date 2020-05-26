@@ -13,11 +13,13 @@ class adminView{
     public function showABM(){
         $this->smarty->display('optionsAdmin.tpl');
     }
-    public function formAddCategory(){
+    public function formAddCategory($categories){
+        $this->smarty->assign('categories', $categories);
         $this->smarty->display('formAddCategory.tpl');
     }
-    public function showAddPlan($categorias){
-        $this->smarty->assign("categorias", $categorias);
+    public function showAddPlan($categories, $plans){
+        $this->smarty->assign("categories", $categories);
+        $this->smarty->assign("plans", $plans);
         $this->smarty->display('formAddplan.tpl');
     }
     public function showAllPlans($plans){
