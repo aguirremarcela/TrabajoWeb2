@@ -7,10 +7,7 @@
     private $view;
     public function __construct(){
         $this->model=new InsurancesModel();
-        $this->view=new adminView();
-    }
-    public function login(){
-        $this->view->formLogin();
+        $this->view=new AdminView();
     }
     public function showABM(){
         $this->view->showABM();
