@@ -32,7 +32,7 @@
         public function getPlan($id_plan){
             $db=$this->createConection();
             $sentencia = $db->prepare("SELECT categorias.categoria, planes.id_planes, planes.plan, 
-            planes.cobertura, planes.descripcion FROM categorias JOIN planes ON 
+            planes.cobertura, planes.descripcion , planes.id_categoria_fk FROM categorias JOIN planes ON 
             categorias.id_categoria=planes.id_categoria_fk WHERE planes.id_planes=?");
             $sentencia->execute([$id_plan]); 
             $plan = $sentencia->fetch(PDO::FETCH_OBJ);
