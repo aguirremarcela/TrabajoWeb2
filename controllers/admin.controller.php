@@ -8,6 +8,7 @@
     public function __construct(){
         $this->model=new InsurancesModel();
         $this->view=new AdminView();
+        $this->checkLogged();
     }
     public function showABM(){
         $this->view->showABM();
@@ -100,6 +101,13 @@
         }
         else{
             echo"<p>No se puede editar</p>";
+        }
+    }
+    public function checkLogged(){
+        session_start();
+        if(!isset($_SESSION['IS_LOGGED'])){
+            header("location: ".BASE_URL.'admin');
+            die();
         }
     }
  }
