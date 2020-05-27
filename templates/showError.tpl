@@ -1,12 +1,17 @@
 {include 'header.tpl'}
-<div id="notfound">
-	<div class="notfound">
-		<div class="notfound-404">
-			<h1>4<span></span>4</h1>
-		</div>
-		<h2>Oops! Pagina no encontrada</h2>
-		<p>Lo sentimos, pero la página que busca no existe, se ha eliminado, o no está disponible temporalmente</p>
-		<a href="home">Volver al home</a>
-	</div>
+{if $error}
+<div class="alert alert-danger alert_error" role="alert">
+  <h4 class="alert-heading">ERROR!</h4>
+  <p>{$error}</p>
+  <hr>
+  <a class="btn btn-danger" href="showABM">OK</a>
 </div>
+{else}
+<div class="alert alert-danger alert_error" role="alert">
+  <h4 class="alert-heading">ERROR!</h4>
+  <p>Ha ocurrido un error, por favor intentelo nuevamente</p>
+  <hr>
+  <a class="btn btn-danger" href="showABM">OK</a>
+</div>   
+{/if}
 {include 'footer.tpl'}
