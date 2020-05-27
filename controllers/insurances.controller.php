@@ -25,7 +25,7 @@
             $planes=$this->model->getPlans($coverange->id_categoria_fk);
             $this->view->showCoverange($coverange, $planes);
         }
-        public function showError(){
-            $this->viewError->showError();
+        public function pageNotFound(){
+            $this->viewError->pageNotFound();
         }
 }
