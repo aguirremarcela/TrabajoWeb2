@@ -2,6 +2,7 @@ body{
     background: linear-gradient(to top, #232526, #555758);
     background-attachment: fixed;
     color:rgb(228, 228, 228);
+    font-family: 'Poppins', sans-serif;
 }
 .navbar-brand {
     padding-bottom: 1rem;
@@ -13,10 +14,21 @@ body{
     width: 180px;
     margin: 40px 0 0 60px;
 }
+.btn-primary{
+    margin: 2% 4% 3% 0;
+}
+.navABM div{
+    margin-bottom: 7%;
+    margin-left: 12%;
+}
+.navABM a{
+    text-decoration: none;
+    color:#ff5555;
+    text-shadow: 0.1em 0.1em rgb(37, 37, 37);
+}
 .titulo_seguros{
     font-size: 2.5rem;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
     margin-top: 20px;
     text-shadow: 0.1em 0.1em rgb(37, 37, 37);           
 }
@@ -51,10 +63,25 @@ body{
     color:white;
     text-shadow: 0.1em 0.1em black;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
 }
 .items:hover{
     font-size: 22px;
+}
+.contPlanes{
+    margin-top: 3%;
+    margin-left: 10%;
+}
+.contPlanes li{
+    list-style: none;
+}
+.contPlanes li a{
+    text-decoration: none;
+    color:#ff5555;
+    text-shadow: 0.1em 0.1em rgb(37, 37, 37);
+}
+.contCoverange{
+    width: 80%;
+    margin: 0 auto;
 }
 .alert_error{
     margin: 12% 19% 0 19%;
