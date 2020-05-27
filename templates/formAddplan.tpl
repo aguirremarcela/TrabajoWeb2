@@ -1,21 +1,31 @@
 {include "header.tpl"}
 {include "navAbm.tpl"}
- <h1>Agrega un plan</h1>
- <form action="insertPlan" method="POST">
-    <input type="text" placeholder="plan" name="plan">
-    <input type="text" placeholder="cobertura" name="cobertura">
-    <input type="text" placeholder="descripcion" name="descripcion">
-    <select name="id_categoria_fk" >
-    {foreach from=$categories item=category }
-       <option value="{$category->id_categoria}">{$category->categoria}</option>
-    {/foreach}
-    </select>
-    <button type="submit">Agregar</button>
- </form>
- <h2>Todos los planes</h2>
- <ul>
- {foreach from=$plans item=plan}
-   <li>{$plan->plan}</li>
- {/foreach}
- </ul>
+<div class="col-sm-12 col-md-8">
+   <h1>Agrega un plan</h1>
+   <form action="insertPlan" method="POST">
+   <div>
+      <input type="text" placeholder="Plan" name="plan">
+      <input type="text" placeholder="Cobertura" name="cobertura">
+   </div>
+   <span>Categoria</span>
+   <div class="col-5">
+      <select name="id_categoria_fk" class="form-control">
+      {foreach from=$categories item=category }
+         <option value="{$category->id_categoria}">{$category->categoria}</option>
+      {/foreach}
+      </select>
+   </div>
+      <span>Descripción</span>
+   <div class="col-10">
+      <textarea name="descripcion" class="form-control" rows="6"></textarea>
+   </div>
+   <button class="btn btn-primary" type="submit">Agregar</button>
+   </form>
+   <h2>Todos los planes</h2>
+   <ul>
+   {foreach from=$plans item=plan}
+      <li>{$plan->plan}</li>
+   {/foreach}
+   </ul>
+</div>
 {include "footer.tpl"}
