@@ -19,11 +19,12 @@ class AuthController{
         $password=$_POST['password'];
         $user=$this->model->getUser($username);
         if ($user && password_verify($password, $user->password)){
-            session_start();
+            if(session_status()!= PHP_SESSION_ACTIVE){
+                session_start();
+            }
             $_SESSION['IS_LOGGED'] = true;
             $_SESSION['ID_USER'] = $user->id_usuario;
             $_SESSION['USERNAME'] = $user->email;
-            //$this->adminView->showUser($user);
             header("Location: ".BASE_URL.'showABM');
         }
         else{
@@ -31,7 +32,9 @@ class AuthController{
         }
     }
     public function logout() {
-        session_start();
+        if(session_status()!= PHP_SESSION_ACTIVE){
+            session_start();
+        }
         session_destroy();
         header("Location: " . BASE_URL . 'home');
     }
