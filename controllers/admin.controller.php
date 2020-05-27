@@ -54,8 +54,15 @@
         $this->view->showAllCategories($categories);
     }
     public function deleteCategory($id){
-        $this->model->deleteCategory($id);
-        header('location:'.BASE_URL.'showDeleteCategory');
+        $planes=$this->model->getPlans($id);
+
+        if(empty($planes)){
+            $this->model->deleteCategory($id);
+            header('location:'.BASE_URL.'showDeleteCategory');
+        }
+        else{
+            $this->errorview->showError('No se puede eliminar esta categoria porque tiene planes asociados a ella');
+        }
     }
     public function showDeletePlan(){
         $plans=$this->model->getAllPlans();
