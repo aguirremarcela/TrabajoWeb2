@@ -99,6 +99,6 @@
         break;
         default:
         $controller= new InsurancesController();
-        $controller->showError();
+        $controller->pageNotFound();
         break;
     }
