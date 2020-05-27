@@ -1,13 +1,16 @@
 <?php
  require_once 'models/insurances.model.php';
  require_once 'views/admin.views.php';
+ require_once 'views/errors.views.php';
  
  class AdminController{
     private $model;
     private $view;
+    private $errorview;
     public function __construct(){
         $this->model=new InsurancesModel();
         $this->view=new AdminView();
+        $this->errorview= new ErrorsView();
         $this->checkLogged();
     }
     public function showABM(){
@@ -25,7 +28,7 @@
             header('location:'.BASE_URL.'showAddCategory');
         }
         else{
-            echo'<p>no se puede ingresar campo vacio</p>';
+            $this->errorview->showError('El campo categoria se encuentra vacío');
         }
     }
     public function showAddplan(){
@@ -43,7 +46,7 @@
             header('location:'.BASE_URL.'showAddPlan');
         }
         else{
-            echo"<p>no se puede insertar un</p>";
+            $this->errorview->showError('Existen uno o mas campos vacios');
         }
     }
     public function showDeleteCategory(){
@@ -79,7 +82,7 @@
             header('location:'.BASE_URL.'showEditCategory');
         }
         else{
-            echo"<p>No se puede editar</p>";
+            $this->errorview->showError('No se puede editar si existe un campo vacio');
         }
     }
     public function showEditPlans(){
@@ -100,11 +103,13 @@
             header('location:'.BASE_URL.'showEditPlans');
         }
         else{
-            echo"<p>No se puede editar</p>";
+            $this->errorview->showError('No se puede editar si existe un campo vacio');
         }
     }
     public function checkLogged(){
-        session_start();
+        if(session_status()!= PHP_SESSION_ACTIVE){
+            session_start();
+        }
         if(!isset($_SESSION['IS_LOGGED'])){
             header("location: ".BASE_URL.'admin');
             die();
