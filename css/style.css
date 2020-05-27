@@ -56,4 +56,6 @@ body{
 .items:hover{
     font-size: 22px;
 }
-
+.alert_error{
+    margin: 12% 19% 0 19%;
+}
