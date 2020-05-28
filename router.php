@@ -25,6 +25,14 @@
             $controller= new InsurancesController();
             $controller->showCoverange($parametros[1]);
         break;
+        case 'contacts':
+            $controller= new InsurancesController();
+            $controller->showContacts();
+        break;
+        case 'aboutUs':
+            $controller= new InsurancesController();
+            $controller->aboutUs();
+        break;
         case'admin':
             $controller= new AuthController();
             $controller->showLogin();
