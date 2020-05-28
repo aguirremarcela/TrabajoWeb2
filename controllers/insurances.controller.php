@@ -16,6 +16,12 @@
             $categorias=$this->model->getAllCategory();
             $this->view->showInsurances($categorias);
         }
+        public function showContacts(){
+            $this->view->showContacts();
+        }
+        public function aboutUs(){
+            $this->view->showAboutUs();
+        }
         public function showPlans($id){
             $planes=$this->model->getPlans($id);
             $this->view->showPlans($planes);
