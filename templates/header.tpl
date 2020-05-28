@@ -20,9 +20,9 @@
       </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav m-auto">
-        <li><a class="navbar-brand" href="">Home</a></li>
-        <li><a class="navbar-brand" href="">Contactos</a></li>
-        <li><a class="navbar-brand" href="">¿Quiénes somos?</a></li>
+        <li><a class="navbar-brand" href="home">Home</a></li>
+        <li><a class="navbar-brand" href="contacts">Contactos</a></li>
+        <li><a class="navbar-brand" href="aboutUs">¿Quiénes somos?</a></li>
       </ul>
     </div>
     </nav>
