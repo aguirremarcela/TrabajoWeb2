@@ -1,15 +1,12 @@
 <?php
 require_once 'models/auth.model.php';
 require_once 'views/auth.view.php';
-require_once 'views/admin.views.php';
 class AuthController{
     private $model;
     private $view;
-    private $adminView;
     public function __construct(){
         $this->model=new AuthModel();
         $this->view=new AuthView();
-        $this->adminView=new AdminView();
     }
     public function showLogin(){
         $this->view->formLogin();
