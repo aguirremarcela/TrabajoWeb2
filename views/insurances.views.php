@@ -11,6 +11,12 @@
             $this->smarty->assign('insurances', $insurances);
             $this->smarty->display('insurances.tpl');
         }
+        public function showContacts(){
+            $this->smarty->display('contacts.tpl');
+        }
+        public function showAboutUs(){
+            $this->smarty->display('aboutUs.tpl');
+        }
         public function showPlans($plans){
             $this->smarty->assign('plans', $plans);
             $this->smarty->display('plans.tpl');
