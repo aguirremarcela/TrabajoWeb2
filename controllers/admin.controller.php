@@ -1,14 +1,17 @@
 <?php
+ require_once 'models/admin.model.php';
  require_once 'models/insurances.model.php';
  require_once 'views/admin.views.php';
  require_once 'views/errors.views.php';
  
  class AdminController{
     private $model;
+    private $modelInsurances;
     private $view;
     private $errorview;
     public function __construct(){
-        $this->model=new InsurancesModel();
+        $this->model=new AdminModel();
+        $this->modelInsurances= new InsurancesModel();
         $this->view=new AdminView();
         $this->errorview= new ErrorsView();
         $this->checkLogged();
@@ -17,7 +20,7 @@
         $this->view->showABM();
     }
     public function showAddCategory(){
-        $categories=$this->model->getAllCategory();
+        $categories=$this->modelInsurances->getAllCategory();
         $this->view->formAddCategory($categories);
     }
     public function addCategory(){
@@ -32,8 +35,8 @@
         }
     }
     public function showAddplan(){
-        $categories=$this->model->getAllCategory();
-        $plans=$this->model->getAllPlans();
+        $categories=$this->modelInsurances->getAllCategory();
+        $plans=$this->modelInsurances->getAllPlans();
         $this->view->showAddplan($categories, $plans);                                    
     }
     public function addPlan(){
@@ -50,11 +53,11 @@
         }
     }
     public function showDeleteCategory(){
-        $categories=$this->model->getAllCategory();
+        $categories=$this->modelInsurances->getAllCategory();
         $this->view->showAllCategories($categories);
     }
     public function deleteCategory($id){
-        $planes=$this->model->getPlans($id);
+        $planes=$this->modelInsurances->getPlans($id);
 
         if(empty($planes)){
             $this->model->deleteCategory($id);
@@ -65,7 +68,7 @@
         }
     }
     public function showDeletePlan(){
-        $plans=$this->model->getAllPlans();
+        $plans=$this->modelInsurances->getAllPlans();
         $this->view->showAllPlans($plans);
     }
     public function deletePlan($id){
@@ -73,11 +76,11 @@
         header('location:'.BASE_URL.'showDeletePlan');
     }
     public function showEditCategory(){
-        $categories=$this->model->getAllCategory();
+        $categories=$this->modelInsurances->getAllCategory();
         $this->view->showEditCategory($categories);
     }
     public function editCategory($id){
-        $category=$this->model->getCategory($id);
+        $category=$this->modelInsurances->getCategory($id);
         $this->view->editCategory($category);
     }
     public function saveEditCategory(){
@@ -93,11 +96,11 @@
         }
     }
     public function showEditPlans(){
-        $plans=$this->model->getAllPlans();
+        $plans=$this->modelInsurances->getAllPlans();
         $this->view->showEditPlans($plans);
     }
     public function editPlan($id){
-        $plan=$this->model->getPlan($id);
+        $plan=$this->modelInsurances->getPlan($id);
         $this->view->editPlan($plan);
     }
     public function saveEditPlan(){
