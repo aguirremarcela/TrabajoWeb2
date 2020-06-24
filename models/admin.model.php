@@ -16,9 +16,18 @@ class AdminModel{
             var_dump($e);
         }
     }
-    public function insertCategory($categoria, $imagen){
+    public function insertCategory($categoria, $image = null){
+        $path_img = null;
+        if($image){
+            $path_img = uploadImage($image);
+        }
         $sentencia = $this->db->prepare("INSERT INTO categorias(categoria, imagen) VALUES(?,?)");
-        $sentencia->execute([$categoria,$imagen]);
+        $sentencia->execute([$categoria,$path_img]);
+    }
+    private function uploadImage($image){
+        $target = 'uploads/images' . uniqid("", true) . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
     }
     public function insertPlan($plan,$cobertura,$descripcion, $id_categoria){
         $sentencia = $this->db->prepare("INSERT INTO planes (plan, cobertura, descripcion, id_categoria_fk) VALUES (?,?,?,?)");
