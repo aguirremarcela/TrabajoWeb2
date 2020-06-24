@@ -25,13 +25,15 @@
     }
     public function addCategory(){
         $categoria=$_POST['categoria'];
-        $imagen=$_POST['imagen'];
-        if(!empty($categoria)){ 
+        $imagen=$_FILES['input_name']['tmp_name'];
+        
+        if(!empty($categoria) && ($_FILES['input_name']['type']== "image/jpg" || $_FILES['input_name']['type']== "image/jpeg" || 
+        $_FILES['input_name']['type']== "image/png")){
             $this->model->insertCategory($categoria,$imagen);
             header('location:'.BASE_URL.'showAddCategory');
         }
         else{
-            $this->errorview->showError('El campo categoria se encuentra vacío');
+            $this->errorview->showError('El campo categoria se encuentra vacío o el formato de la imagen no es admitido');
         }
     }
     public function showAddplan(){
