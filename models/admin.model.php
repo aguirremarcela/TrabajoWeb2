@@ -19,13 +19,13 @@ class AdminModel{
     public function insertCategory($categoria, $image = null){
         $path_img = null;
         if($image){
-            $path_img = uploadImage($image);
+            $path_img = $this->uploadImage($image);
         }
         $sentencia = $this->db->prepare("INSERT INTO categorias(categoria, imagen) VALUES(?,?)");
         $sentencia->execute([$categoria,$path_img]);
     }
     private function uploadImage($image){
-        $target = 'uploads/images' . uniqid("", true) . '.jpg';
+        $target = 'uploads/images/' . uniqid("", true) . '.jpg';
         move_uploaded_file($image, $target);
         return $target;
     }
