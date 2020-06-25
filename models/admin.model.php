@@ -24,11 +24,6 @@ class AdminModel{
         $sentencia = $this->db->prepare("INSERT INTO categorias(categoria, imagen) VALUES(?,?)");
         $sentencia->execute([$categoria,$path_img]);
     }
-    private function uploadImage($image){
-        $target = 'uploads/images/' . uniqid("", true) . '.jpg';
-        move_uploaded_file($image, $target);
-        return $target;
-    }
     public function insertPlan($plan,$cobertura,$descripcion, $id_categoria){
         $sentencia = $this->db->prepare("INSERT INTO planes (plan, cobertura, descripcion, id_categoria_fk) VALUES (?,?,?,?)");
         $sentencia->execute([$plan,$cobertura,$descripcion,$id_categoria]);
@@ -41,15 +36,21 @@ class AdminModel{
         $sentencia=$this->db->prepare("DELETE FROM categorias  WHERE id_categoria=?");
         $sentencia->execute([$id]);
     }
-    public function saveEditCategory($name,$imagen,$id_category){
+    public function saveEditCategory($name,$image,$id_category){
+        $path_img = null;
+        if($image){
+            $path_img = $this->uploadImage($image);
+        }
         $sentencia = $this->db->prepare("UPDATE categorias SET categoria =  ?, imagen = ?  WHERE categorias.id_categoria = ?");
-        $sentencia->execute([$name,$imagen,$id_category]); 
+        $sentencia->execute([$name,$path_img,$id_category]); 
     }
     public function saveEditPlan($plan, $cobertura, $descripcion, $id_planes){
         $sentencia = $this->db->prepare("UPDATE planes SET plan =  ?, cobertura = ?, descripcion = ?  WHERE planes.id_planes = ?");
         $sentencia->execute([$plan, $cobertura, $descripcion, $id_planes]); 
     }
-
-
-
+    private function uploadImage($image){
+    $target = 'uploads/images/' . uniqid() . '.jpg';
+    move_uploaded_file($image, $target);
+    return $target;
+    }
 }
