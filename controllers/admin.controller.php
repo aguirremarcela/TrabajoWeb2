@@ -60,9 +60,10 @@
     }
     public function deleteCategory($id){
         $planes=$this->modelInsurances->getPlans($id);
-
+        $categorie=$this->modelInsurances->getCategory($id)->imagen;
         if(empty($planes)){
             $this->model->deleteCategory($id);
+            unlink($categorie);
             header('location:'.BASE_URL.'showDeleteCategory');
         }
         else{
@@ -88,13 +89,17 @@
     public function saveEditCategory(){
         $category = $_POST['categoria'];
         $id_category=$_POST['id_categoria'];
-        $imagen=$_POST['imagen'];
-        if(!empty($category) && !empty($id_category)){
+        $imagen=$_FILES['input_name']['tmp_name'];
+        $categorie=$this->modelInsurances->getCategory($id_category)->imagen;
+
+        if(!empty($category) && !empty($id_category) && ($_FILES['input_name']['type']== "image/jpg" || $_FILES['input_name']['type']== "image/jpeg" || 
+        $_FILES['input_name']['type']== "image/png")){
             $this->model->saveEditCategory($category,$imagen,$id_category);
+            unlink($categorie);
             header('location:'.BASE_URL.'showEditCategory');
         }
         else{
-            $this->errorview->showError('No se puede editar si existe un campo vacio');
+            $this->errorview->showError('No se puede editar si existe un campo vacio, o el formato de la imagen es incorrecto');
         }
     }
     public function showEditPlans(){
