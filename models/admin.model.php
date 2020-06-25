@@ -1,21 +1,11 @@
 <?php
-
-class AdminModel{
+require_once 'models/base.model.php';
+class AdminModel extends BaseModel{
     private $db;
-    public function __construct() {
-        $host = 'localhost';
-        $userName = 'root';
-        $password = '';
-        $database = 'db_seguros'; 
-
-        // 1. abro la conexión con MySQL 
-        try {
-            $this->db = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $userName, $password);            
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-        } catch (Exception $e) {
-            var_dump($e);
-        }
+    public function __construct(){
+        $this->db=$this->createConection();  
     }
+
     public function insertCategory($categoria, $image = null){
         $path_img = null;
         if($image){
@@ -24,6 +14,7 @@ class AdminModel{
         $sentencia = $this->db->prepare("INSERT INTO categorias(categoria, imagen) VALUES(?,?)");
         $sentencia->execute([$categoria,$path_img]);
     }
+
     public function insertPlan($plan,$cobertura,$descripcion, $id_categoria){
         $sentencia = $this->db->prepare("INSERT INTO planes (plan, cobertura, descripcion, id_categoria_fk) VALUES (?,?,?,?)");
         $sentencia->execute([$plan,$cobertura,$descripcion,$id_categoria]);
