@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2020 at 06:36 AM
+-- Generation Time: Jun 27, 2020 at 11:19 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -48,6 +48,19 @@ INSERT INTO `categorias` (`id_categoria`, `categoria`, `imagen`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id_comentario` int(11) NOT NULL,
+  `comentario` text NOT NULL,
+  `puntaje` int(11) NOT NULL,
+  `id_usuario_fk` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `planes`
 --
 
@@ -85,16 +98,17 @@ INSERT INTO `planes` (`id_planes`, `plan`, `cobertura`, `descripcion`, `id_categ
 CREATE TABLE `usuarios` (
   `id_usuario` int(10) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `administrador` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `email`, `password`) VALUES
-(1, 'aguirremarcela@hotmail.com.ar', '$2y$12$F7t4Mjv6wWGttGVAuozTyexkGCnlXaSMfjSTl11o/NNH2FaNpnxmK'),
-(2, 'joaquin_loiza@hotmail.com', '$2y$12$Bq4sVJpy7tgOnRjCsoItEuSUWfLY.lqv3wiyDuK5h3adWFrnj2bme');
+INSERT INTO `usuarios` (`id_usuario`, `email`, `password`, `administrador`) VALUES
+(1, 'aguirremarcela@hotmail.com.ar', '$2y$12$F7t4Mjv6wWGttGVAuozTyexkGCnlXaSMfjSTl11o/NNH2FaNpnxmK', 0),
+(2, 'joaquin_loiza@hotmail.com', '$2y$12$Bq4sVJpy7tgOnRjCsoItEuSUWfLY.lqv3wiyDuK5h3adWFrnj2bme', 0);
 
 --
 -- Indexes for dumped tables
@@ -105,6 +119,13 @@ INSERT INTO `usuarios` (`id_usuario`, `email`, `password`) VALUES
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indexes for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `id_usuario_fk` (`id_usuario_fk`);
 
 --
 -- Indexes for table `planes`
@@ -127,13 +148,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_categoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `planes`
 --
 ALTER TABLE `planes`
-  MODIFY `id_planes` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_planes` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
@@ -144,6 +171,12 @@ ALTER TABLE `usuarios`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Constraints for table `planes`
