@@ -6,6 +6,7 @@
             <tr>
                 <th>Categorias</th>
                 <th>Eliminar</th>
+                <th>Editar</th>
             </tr>
         </thead>
     <tbody>
@@ -14,6 +15,9 @@
             <td>{$category->categoria}</td>
             <td>
                 <a type="button" class="btn btn-danger" href="deleteCategory/{$category->id_categoria}">Eliminar</a>
+            </td>
+            <td>
+                <a type="button" class="btn btn-danger" href="editCategory/{$category->id_categoria}">Editar</a>
             </td>
         </tr>   
     {/foreach}
