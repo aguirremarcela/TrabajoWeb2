@@ -54,7 +54,7 @@
             $this->errorview->showError('Existen uno o mas campos vacios');
         }
     }
-    public function showDeleteCategory(){
+    public function showBMCategories(){
         $categories=$this->modelInsurances->getAllCategory();
         $this->view->showAllCategories($categories);
     }
@@ -64,19 +64,19 @@
         if(empty($planes)){
             $this->model->deleteCategory($id);
             unlink($categorie);
-            header('location:'.BASE_URL.'showDeleteCategory');
+            header('location:'.BASE_URL.'showBMCategory');
         }
         else{
             $this->errorview->showError('No se puede eliminar esta categoria porque tiene planes asociados a ella');
         }
     }
-    public function showDeletePlan(){
+    public function showBMPlan(){
         $plans=$this->modelInsurances->getAllPlans();
         $this->view->showAllPlans($plans);
     }
     public function deletePlan($id){
         $this->model->deletePlan($id);
-        header('location:'.BASE_URL.'showDeletePlan');
+        header('location:'.BASE_URL.'showBMPlans');
     }
     public function showEditCategory(){
         $categories=$this->modelInsurances->getAllCategory();
@@ -96,7 +96,7 @@
         $_FILES['input_name']['type']== "image/png")){
             $this->model->saveEditCategory($category,$imagen,$id_category);
             unlink($categorie);
-            header('location:'.BASE_URL.'showEditCategory');
+            header('location:'.BASE_URL.'showBMCategory');
         }
         else{
             $this->errorview->showError('No se puede editar si existe un campo vacio, o el formato de la imagen es incorrecto');
@@ -117,7 +117,7 @@
         $id_planes=$_POST['id_planes'];
         if(!empty($plan) && !empty($cobertura) && !empty($descripcion) && !empty($id_planes)){
             $this->model->saveEditPlan($plan, $cobertura, $descripcion, $id_planes);
-            header('location:'.BASE_URL.'showEditPlans');
+            header('location:'.BASE_URL.'showBMPlans');
         }
         else{
             $this->errorview->showError('No se puede editar si existe un campo vacio');
