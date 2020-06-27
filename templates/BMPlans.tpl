@@ -5,17 +5,20 @@
         <thead>
             <tr>
                 <th>Planes</th>
-                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
     <tbody>
-    {foreach from=$plans item=plan}
+    {foreach from=$plans item=plan }
         <tr>
             <td>{$plan->plan}</td>
             <td>
+                <a type="button" class="btn btn-danger" href="deletePlan/{$plan->id_planes}">Eliminar</a>
+            </td>
+            <td>
                 <a type="button" class="btn btn-danger" href="editPlan/{$plan->id_planes}">Editar</a>
             </td>
-        </tr>  
+        </tr>   
     {/foreach}
     </tbody>
     </table>
