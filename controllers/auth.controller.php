@@ -9,7 +9,15 @@ class AuthController{
         $this->view=new AuthView();
     }
     public function showLogin(){
-        $this->view->formLogin();
+        if(session_status()!= PHP_SESSION_ACTIVE){
+            session_start();
+        }
+            if(isset($_SESSION['IS_LOGGED'])){
+                header("Location: ".BASE_URL.'showABM');
+            }
+            else{
+                $this->view->formLogin();
+            }
     }
     public function verify(){
         $username=$_POST['username'];
