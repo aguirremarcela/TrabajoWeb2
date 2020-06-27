@@ -18,16 +18,10 @@
         <a href="showAddPlan">AGREGAR PLANES</a><br>
       </div>
       <div>
-        <a href="showDeleteCategory">ELIMINAR CATEGORIAS</a><br>
+        <a href="showBMCategories">ELIMINAR / EDITAR CATEGORIAS</a><br>
       </div>
       <div>
-        <a href="showDeletePlan">ELIMINAR PLANES</a><br>
-      </div>
-      <div>
-        <a href="showEditCategory">EDITAR CATEGORIAS</a><br>
-      </div>
-      <div>
-        <a href="showEditPlans">EDITAR PLANES</a>
+        <a href="showBMPlans">ELIMINAR / EDITAR PLANES</a><br>
       </div>
     </div>
   
