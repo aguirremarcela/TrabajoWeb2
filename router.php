@@ -65,17 +65,17 @@
             $controller= new AdminController();
             $controller->addPlan();    
         break;
-        case 'showDeleteCategory':
+        case 'showBMCategories':
             $controller= new AdminController();
-            $controller->showDeleteCategory();
+            $controller->showBMCategories();
         break;
         case 'deleteCategory':
             $controller= new AdminController();
             $controller->deleteCategory($parametros[1]);
         break;
-        case 'showDeletePlan':
+        case 'showBMPlans':
             $controller= new AdminController();
-            $controller->showDeletePlan();  
+            $controller->showBMPlan();  
         break;
         case 'deletePlan':
             $controller= new AdminController();
