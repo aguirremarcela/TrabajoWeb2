@@ -28,11 +28,11 @@ class AdminView{
     }
     public function showAllPlans($plans){
         $this->smarty->assign('plans', $plans);
-        $this->smarty->display('deletePlans.tpl');
+        $this->smarty->display('BMPlans.tpl');
     }
     public function showAllCategories($categories){
         $this->smarty->assign('categories', $categories);
-        $this->smarty->display('deleteCategories.tpl');
+        $this->smarty->display('BMCategories.tpl');
     }
     public function showEditCategory($categories){
         $this->smarty->assign("categories", $categories);
