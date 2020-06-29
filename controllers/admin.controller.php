@@ -128,8 +128,11 @@
             session_start();
         }
         if(!isset($_SESSION['IS_LOGGED'])){
-            header("location: ".BASE_URL.'admin');
+            header("location: ".BASE_URL.'login');
             die();
+        }
+        elseif($_SESSION['ROLE'] != 1){
+            header("location: ".BASE_URL.'home');
         }
     }
  }
