@@ -33,7 +33,7 @@
             $controller= new InsurancesController();
             $controller->aboutUs();
         break;
-        case'admin':
+        case'login':
             $controller= new AuthController();
             $controller->showLogin();
         break;
