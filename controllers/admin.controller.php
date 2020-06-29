@@ -64,7 +64,7 @@
         if(empty($planes)){
             $this->model->deleteCategory($id);
             unlink($categorie);
-            header('location:'.BASE_URL.'showBMCategory');
+            header('location:'.BASE_URL.'showBMCategories');
         }
         else{
             $this->errorview->showError('No se puede eliminar esta categoria porque tiene planes asociados a ella');
@@ -96,7 +96,7 @@
         $_FILES['input_name']['type']== "image/png")){
             $this->model->saveEditCategory($category,$imagen,$id_category);
             unlink($categorie);
-            header('location:'.BASE_URL.'showBMCategory');
+            header('location:'.BASE_URL.'showBMCategories');
         }
         else{
             $this->errorview->showError('No se puede editar si existe un campo vacio, o el formato de la imagen es incorrecto');
