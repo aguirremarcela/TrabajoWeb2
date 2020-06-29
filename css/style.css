@@ -46,8 +46,9 @@ body{
     border:3px solid #161616;
 }
 .caja:hover{
-    background: linear-gradient(to right,#dc5f6ebf,#e64f36d1);
-    color:white;
+    background-image: none !important;
+    color: white;
+    background-color: #d24553;
 }
 .items{
     color:white;
