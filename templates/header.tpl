@@ -21,9 +21,9 @@
         <div class="dropdown mr-5">
             <!--Si el usuario es administrador agregar un boton para acceder a "administrar"-->
             {if $administrador == 1}
-            <a class="btn btn-primary ml-4 mt-1"href="showABM">Administrar</a>
+            <a class="btn btn-outline-light ml-4 mt-1"href="showABM">Administrar</a>
             {/if}
-            <button type="button" class="btn btn-primary dropdown-toggle ml-4 mt-1" data-toggle="dropdown">
+            <button type="button" class="btn btn-outline-light dropdown-toggle ml-4 mt-1" data-toggle="dropdown">
             {$user}
             </button>
            <div class="dropdown-menu">
@@ -33,8 +33,8 @@
         {else}
         <!--Botones login & Registrarse-->
         <div class="mr-5">
-          <a class="btn btn-outline-primary ml-4 mt-1" href="login">Iniciar Sesión</a>
-          <a class="btn btn-outline-primary ml-4 mt-1" href="">Regístrate</a>
+          <a class="btn btn-outline-light ml-4 mt-1" href="login">Iniciar Sesión</a>
+          <a class="btn btn-outline-light ml-4 mt-1" href="">Regístrate</a>
         </div>
         {/if}
       </div>
