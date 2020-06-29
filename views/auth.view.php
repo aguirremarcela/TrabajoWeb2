@@ -12,6 +12,7 @@ class AuthView{
         if(isset($_SESSION['IS_LOGGED'])){
             $this->smarty->assign('isLogged',$_SESSION['IS_LOGGED']);
             $this->smarty->assign('user',$_SESSION['USERNAME']);
+            $this->smarty->assign('administrador',$_SESSION['ROLE']);
         } 
     }
     public function formLogin($error=null){
