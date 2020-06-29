@@ -34,7 +34,7 @@
         <!--Botones login & Registrarse-->
         <div class="mr-5">
           <a class="btn btn-outline-light ml-4 mt-1" href="login">Iniciar Sesión</a>
-          <a class="btn btn-outline-light ml-4 mt-1" href="">Regístrate</a>
+          <a class="btn btn-outline-light ml-4 mt-1" href="register">Regístrate</a>
         </div>
         {/if}
       </div>
