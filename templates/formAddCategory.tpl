@@ -14,4 +14,6 @@
    {/foreach}
    </ul>
 </div>
+</div>
+</div>
 {include "footer.tpl"}

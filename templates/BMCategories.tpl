@@ -24,4 +24,6 @@
     </tbody>
     </table>
 </div>
+</div>
+</div>
 {include "footer.tpl"}

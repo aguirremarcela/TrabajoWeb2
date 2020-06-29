@@ -18,4 +18,6 @@
     <button class="btn btn-primary" type="submit">Guardar</button>
     </form>
 </div>
+</div>
+</div>
 {include 'footer.tpl'}
