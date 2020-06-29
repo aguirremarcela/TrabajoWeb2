@@ -27,6 +27,11 @@
         </div>
         </div>
       </div>
+      {else}
+      <div class="col-sm-12 d-flex justify-content-end">
+        <a class="btn btn-outline-primary" href="login">Iniciar Sesión</a>
+        <a class="btn btn-outline-primary" href="">Registrate</a>
+      </div>
       {/if}
     </header>
   </div>
