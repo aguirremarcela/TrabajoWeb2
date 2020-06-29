@@ -1,7 +1,7 @@
 <?php
     require_once 'controllers/insurances.controller.php';
     require_once 'controllers/admin.controller.php';
-    require_once 'controllers/auth.controller.php';
+    require_once 'controllers/user.controller.php';
 
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -33,16 +33,24 @@
             $controller= new InsurancesController();
             $controller->aboutUs();
         break;
+        case'register':
+            $controller= new UserController();
+            $controller->showRegister();
+        break;
+        case'signUp':
+            $controller=new UserController();
+            $controller->signUp();
+        break;
         case'login':
-            $controller= new AuthController();
+            $controller= new UserController();
             $controller->showLogin();
         break;
         case 'verify':
-            $controller=new AuthController();
+            $controller=new UserController();
             $controller->verify();
         break;
         case 'logout':
-            $controller=new AuthController();
+            $controller=new UserController();
             $controller->logout();
         break;    
         case'showABM':
