@@ -30,10 +30,19 @@ class AuthController{
             $_SESSION['IS_LOGGED'] = true;
             $_SESSION['ID_USER'] = $user->id_usuario;
             $_SESSION['USERNAME'] = $user->email;
-            header("Location: ".BASE_URL.'showABM');
+            $_SESSION['ROLE'] = $user->administrador;
+            $this->role($user);
         }
         else{
             $this->view->formLogin("Los datos son incorrectos");
+        }
+    }
+    private function role($user){
+        if($user->administrador == 1){
+            header("Location: " . BASE_URL . 'showABM');
+        }
+        else{
+            header("Location: " . BASE_URL . 'home');
         }
     }
     public function logout() {
