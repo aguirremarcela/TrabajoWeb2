@@ -26,7 +26,7 @@
             <button type="button" class="btn btn-outline-light dropdown-toggle ml-4 mt-1" data-toggle="dropdown">
             {$user}
             </button>
-           <div class="dropdown-menu">
+           <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item" href="logout">Logout</a>
             </div>
         </div>
