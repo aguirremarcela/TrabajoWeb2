@@ -6,6 +6,7 @@
             <tr>
                 <th>Planes</th>
                 <th>Eliminar</th>
+                <th>Editar</th>
             </tr>
         </thead>
     <tbody>
