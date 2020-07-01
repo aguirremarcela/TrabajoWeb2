@@ -127,8 +127,18 @@
         }
     }
     public function showUsers(){
-        $users=$this->modelUsers->getAll();
+        if(session_status()!= PHP_SESSION_ACTIVE){
+            session_start();
+        }
+        if($_SESSION['IS_LOGGED']){
+            $email=$_SESSION['USERNAME'];
+        }
+        $users=$this->modelUsers->getAll($email);
         $this->view->showAllUsers($users);
+    }
+    public function deleteUser($id){
+        $this->modelUsers->delete($id);
+        header("location: ".BASE_URL.'showUsers');
     }
     public function checkLogged(){
         if(session_status()!= PHP_SESSION_ACTIVE){
