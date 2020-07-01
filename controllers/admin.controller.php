@@ -26,10 +26,10 @@
     public function addCategory(){
         $categoria=$_POST['categoria'];
         $imagen=$_FILES['input_name']['tmp_name'];
-        
+        $nameImg=$_FILES['input_name']['name'];
         if(!empty($categoria) && ($_FILES['input_name']['type']== "image/jpg" || $_FILES['input_name']['type']== "image/jpeg" || 
         $_FILES['input_name']['type']== "image/png")){
-            $this->model->insertCategory($categoria,$imagen);
+            $this->model->insertCategory($categoria,$imagen,$nameImg);
             header('location:'.BASE_URL.'showAddCategory');
         }
         else{
@@ -90,11 +90,12 @@
         $category = $_POST['categoria'];
         $id_category=$_POST['id_categoria'];
         $imagen=$_FILES['input_name']['tmp_name'];
+        $nameImg=$_FILES['input_name']['name'];
         $categorie=$this->modelInsurances->getCategory($id_category)->imagen;
 
         if(!empty($category) && !empty($id_category) && ($_FILES['input_name']['type']== "image/jpg" || $_FILES['input_name']['type']== "image/jpeg" || 
         $_FILES['input_name']['type']== "image/png")){
-            $this->model->saveEditCategory($category,$imagen,$id_category);
+            $this->model->saveEditCategory($category,$imagen,$id_category,$nameImg);
             unlink($categorie);
             header('location:'.BASE_URL.'showBMCategories');
         }
