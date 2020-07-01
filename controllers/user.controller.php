@@ -54,9 +54,8 @@ class UserController{
         $username=$_POST['username'];
         $password=$_POST['password'];
         $password2=$_POST['password2'];
-        $users=$this->model->getAll();
-        $checkRepeated=$this->checkRepeated($username, $users);
-        if(!empty($username) && $password==$password2 && $checkRepeated==false){
+        $user=$this->model->getUser($username);
+        if(!empty($username) && $password==$password2 && empty( $user)){
             $Encryted=password_hash($password,PASSWORD_DEFAULT);
             $this->model->insertUser($username,$Encryted);
             $this->verify($username, $password);
@@ -64,16 +63,6 @@ class UserController{
         else{
             $this->view->formRegister("El usario ya existe o las contraseñas no coinciden");
         }
-
-    }
-    private function checkRepeated($username, $users){
-        $repeat=false;
-        foreach($users as $user){
-            if($user->email ==$username){
-                $repeat=true;
-            }
-        }
-        return $repeat;
     }
     public function logout() {
         if(session_status()!= PHP_SESSION_ACTIVE){
