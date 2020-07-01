@@ -13,5 +13,8 @@
       <div>
         <a href="showBMPlans">ELIMINAR / EDITAR PLANES</a><br>
       </div>
+      <div>
+        <a href="showUsers">USUARIOS</a><br>
+      </div>
     </div>
   
