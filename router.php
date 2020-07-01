@@ -113,6 +113,10 @@
             $controller=new AdminController();
             $controller->saveEditPlan();
         break;
+        case'showUsers':
+            $controller=new AdminController();
+            $controller->showUsers();
+        break;
         default:
         $controller= new InsurancesController();
         $controller->pageNotFound();
