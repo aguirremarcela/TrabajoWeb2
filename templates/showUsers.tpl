@@ -26,7 +26,7 @@
                 </div>
             </td>
             <td>
-                <a type="button" class="btn btn-danger" href="/{$user->id_usuario}">Eliminar</a>
+                <a type="button" class="btn btn-danger" href="deleteUser/{$user->id_usuario}">Eliminar</a>
             </td>
         </tr>   
     {/foreach}
