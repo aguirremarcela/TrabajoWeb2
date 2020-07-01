@@ -1,6 +1,7 @@
 <?php
  require_once 'models/admin.model.php';
  require_once 'models/insurances.model.php';
+ require_once 'models/user.model.php';
  require_once 'views/admin.views.php';
  require_once 'views/errors.views.php';
  
@@ -12,6 +13,7 @@
     public function __construct(){
         $this->model=new AdminModel();
         $this->modelInsurances= new InsurancesModel();
+        $this->modelUsers= new UserModel();
         $this->view=new AdminView();
         $this->errorview= new ErrorsView();
         $this->checkLogged();
@@ -123,6 +125,10 @@
         else{
             $this->errorview->showError('No se puede editar si existe un campo vacio');
         }
+    }
+    public function showUsers(){
+        $users=$this->modelUsers->getAll();
+        $this->view->showAllUsers($users);
     }
     public function checkLogged(){
         if(session_status()!= PHP_SESSION_ACTIVE){
