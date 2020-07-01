@@ -6,10 +6,10 @@ class AdminModel extends BaseModel{
         $this->db=$this->createConection();  
     }
 
-    public function insertCategory($categoria, $image = null){
+    public function insertCategory($categoria,$image,$nameImg){
         $path_img = null;
         if($image){
-            $path_img = $this->uploadImage($image);
+            $path_img = $this->uploadImage($image, $nameImg);
         }
         $sentencia = $this->db->prepare("INSERT INTO categorias(categoria, imagen) VALUES(?,?)");
         $sentencia->execute([$categoria,$path_img]);
@@ -27,10 +27,10 @@ class AdminModel extends BaseModel{
         $sentencia=$this->db->prepare("DELETE FROM categorias  WHERE id_categoria=?");
         $sentencia->execute([$id]);
     }
-    public function saveEditCategory($name,$image,$id_category){
+    public function saveEditCategory($name,$image,$id_category,$nameImg){
         $path_img = null;
         if($image){
-            $path_img = $this->uploadImage($image);
+            $path_img = $this->uploadImage($image, $nameImg);
         }
         $sentencia = $this->db->prepare("UPDATE categorias SET categoria =  ?, imagen = ?  WHERE categorias.id_categoria = ?");
         $sentencia->execute([$name,$path_img,$id_category]); 
@@ -39,8 +39,8 @@ class AdminModel extends BaseModel{
         $sentencia = $this->db->prepare("UPDATE planes SET plan =  ?, cobertura = ?, descripcion = ?  WHERE planes.id_planes = ?");
         $sentencia->execute([$plan, $cobertura, $descripcion, $id_planes]); 
     }
-    private function uploadImage($image){
-    $target = 'uploads/images/' . uniqid() . '.jpg';
+    private function uploadImage($image, $nameImg){
+    $target = 'uploads/images/' . uniqid("", true) . "." . strtolower(pathinfo($nameImg, PATHINFO_EXTENSION));
     move_uploaded_file($image, $target);
     return $target;
     }
