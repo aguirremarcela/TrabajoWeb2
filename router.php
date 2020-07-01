@@ -117,6 +117,10 @@
             $controller=new AdminController();
             $controller->showUsers();
         break;
+        case'deleteUser':
+            $controller=new AdminController();
+            $controller->deleteUser($parametros[1]);
+        break;
         default:
         $controller= new InsurancesController();
         $controller->pageNotFound();
