@@ -51,4 +51,8 @@ class AdminView{
         $this->smarty->assign('plan',$plan);
         $this->smarty->display('editPlan.tpl');
     }
+    public function showAllUsers($users){
+        $this->smarty->assign('users',$users);
+        $this->smarty->display('showUsers.tpl');
+    }
 }
