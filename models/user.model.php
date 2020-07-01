@@ -21,10 +21,10 @@
         $usuario = $sentencia->fetch(PDO::FETCH_OBJ);
         return ($usuario);
      }
-     public function getAll(){
+     public function getAll($email){
         $db= $this->createConection();
-        $sentencia= $db->prepare("SELECT * FROM usuarios");
-        $sentencia->execute(); 
+        $sentencia= $db->prepare("SELECT * FROM usuarios WHERE usuarios.email!=?");
+        $sentencia->execute([$email]); 
         $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return ($usuarios);
      }
@@ -32,5 +32,10 @@
         $db= $this->createConection();
         $sentencia= $db->prepare("INSERT INTO usuarios (email, password) VALUES(?,?)");
         $sentencia->execute([$username,$password]);
+     }
+     public function delete($id){
+        $db= $this->createConection();
+        $sentencia= $db->prepare("DELETE FROM usuarios WHERE id_usuario=?");
+        $sentencia->execute([$id]);
      }
  }
