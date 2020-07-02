@@ -5,7 +5,7 @@
         <thead>
             <tr>
                 <th>Usuarios</th>
-                <th>Cambiar Rol</th>
+                <th>Administrador</th>
                 <th>Eliminar</th>
             </tr>
         </thead>
@@ -14,16 +14,11 @@
         <tr>
             <td>{$user->email}</td>
             <td>
-                <div class="custom-control custom-switch">
-                    {if $user->administrador == 1 }
-                        <input type="checkbox" class="custom-control-input" id="customSwitch{$user->id_usuario}" checked value="1">
-                        <label class="custom-control-label" for="customSwitch{$user->id_usuario}"></label>
-                    {else}
-                        <input type="checkbox" class="custom-control-input" id="customSwitch{$user->id_usuario}" disabled value="0">
-                        <label class="custom-control-label" for="customSwitch{$user->id_usuario}"></label> 
-                    {/if}
-                    
-                </div>
+            {if $user->administrador == 1}
+                <a type="button" class="btn btn-danger" href="confirmRole/{$user->email}/{$user->administrador}">SI</a>
+            {else if $user->administrador == 0}
+                <a type="button" class="btn btn-danger" href="confirmRole/{$user->email}/{$user->administrador}">NO</a>         
+            {/if}
             </td>
             <td>
                 <a type="button" class="btn btn-danger" href="deleteUser/{$user->id_usuario}">Eliminar</a>
