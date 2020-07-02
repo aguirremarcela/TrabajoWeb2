@@ -15,9 +15,9 @@
             <td>{$user->email}</td>
             <td>
             {if $user->administrador == 1}
-                <a type="button" class="btn btn-danger" href="confirmRole/{$user->email}/{$user->administrador}">SI</a>
+                <a type="button" class="btn btn-success btn-block" href="confirmRole/{$user->email}/{$user->administrador}">SI</a>
             {else if $user->administrador == 0}
-                <a type="button" class="btn btn-danger" href="confirmRole/{$user->email}/{$user->administrador}">NO</a>         
+                <a type="button" class="btn btn-danger btn-block" href="confirmRole/{$user->email}/{$user->administrador}">NO</a>         
             {/if}
             </td>
             <td>
