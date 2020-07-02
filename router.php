@@ -89,10 +89,6 @@
             $controller= new AdminController();
             $controller->deletePlan($parametros[1]);
         break;
-        case'showEditCategory':
-            $controller=new AdminController();
-            $controller->showEditCategory();
-        break;
         case'editCategory':
             $controller=new AdminController();
             $controller->editCategory($parametros[1]);
@@ -100,10 +96,6 @@
         case'saveEditCategory':
             $controller=new AdminController();
             $controller->saveEditCategory();
-        break;
-        case'showEditPlans':
-            $controller=new AdminController();
-            $controller->showEditPlans();
         break;
         case'editPlan':
             $controller=new AdminController();
@@ -120,6 +112,10 @@
         case'deleteUser':
             $controller=new AdminController();
             $controller->deleteUser($parametros[1]);
+        break;
+        case'confirmRole':
+            $controller=new AdminController();
+            $controller->confirmRole($parametros[1], $parametros[2]);
         break;
         default:
         $controller= new InsurancesController();
