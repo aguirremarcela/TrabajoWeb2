@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 27, 2020 at 11:19 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.29
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 02-07-2020 a las 16:06:49
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_seguros`
+-- Base de datos: `db_seguros`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorias`
+-- Estructura de tabla para la tabla `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -34,34 +34,35 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categorias`
+-- Volcado de datos para la tabla `categorias`
 --
 
 INSERT INTO `categorias` (`id_categoria`, `categoria`, `imagen`) VALUES
-(1, 'Automotores', 'https://i.ibb.co/jfgnHqq/01-automotores.jpg'),
-(2, 'Motos', 'https://i.ibb.co/1GkdHJx/02-motos-2.jpg'),
-(3, 'Hogar', 'https://i.ibb.co/vhbgYPL/03-hogar-01.jpg'),
-(4, 'Accidentes Personales', 'https://i.ibb.co/Ld4PqCq/04-accidentes-personales.jpg'),
-(5, 'Vida', 'https://i.ibb.co/JFsxsfp/05-seguros-de-vida-01.jpg'),
-(6, 'Agrícolas', 'https://i.ibb.co/31866Yw/06-agricolas-01.jpg');
+(1, 'Automotores', 'uploads/images/5ef9adc7e0ea4.jpg'),
+(2, 'Motos', 'uploads/images/5ef9ae49f1034.jpg'),
+(3, 'Hogar', 'uploads/images/5ef9ae554a7d2.jpg'),
+(4, 'Accidentes Personales', 'uploads/images/5ef9ae5eef7de.jpg'),
+(5, 'Vida', 'uploads/images/5ef9ae6dc5646.jpg'),
+(6, 'Agrícolas', 'uploads/images/5efbcb4f467ea9.64348269.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comentarios`
+-- Estructura de tabla para la tabla `comentarios`
 --
 
 CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
   `comentario` text NOT NULL,
   `puntaje` int(11) NOT NULL,
-  `id_usuario_fk` int(10) NOT NULL
+  `id_usuario_fk` int(10) NOT NULL,
+  `id_planes_fk` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `planes`
+-- Estructura de tabla para la tabla `planes`
 --
 
 CREATE TABLE `planes` (
@@ -73,7 +74,7 @@ CREATE TABLE `planes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `planes`
+-- Volcado de datos para la tabla `planes`
 --
 
 INSERT INTO `planes` (`id_planes`, `plan`, `cobertura`, `descripcion`, `id_categoria_fk`) VALUES
@@ -92,7 +93,7 @@ INSERT INTO `planes` (`id_planes`, `plan`, `cobertura`, `descripcion`, `id_categ
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -103,83 +104,87 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `email`, `password`, `administrador`) VALUES
-(1, 'aguirremarcela@hotmail.com.ar', '$2y$12$F7t4Mjv6wWGttGVAuozTyexkGCnlXaSMfjSTl11o/NNH2FaNpnxmK', 0),
-(2, 'joaquin_loiza@hotmail.com', '$2y$12$Bq4sVJpy7tgOnRjCsoItEuSUWfLY.lqv3wiyDuK5h3adWFrnj2bme', 0);
+(1, 'aguirremarcela@hotmail.com.ar', '$2y$12$F7t4Mjv6wWGttGVAuozTyexkGCnlXaSMfjSTl11o/NNH2FaNpnxmK', 1),
+(2, 'joaquin_loiza@hotmail.com', '$2y$12$Bq4sVJpy7tgOnRjCsoItEuSUWfLY.lqv3wiyDuK5h3adWFrnj2bme', 1),
+(11, 'romina_dehesa@hotmail.com', '$2y$10$Ik.Bwm/jYAaR7hVaisnkb.HNUt8mL87Ukza3TbUbafDyo1cRg8Afu', 0),
+(12, 'style.gra.rivero@gmail.com', '$2y$10$U4wq9d.7HisTuOULVaFjcuKYoVbhayuzEAJ04xYg47Tn/B9.SuNPa', 0);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `categorias`
+-- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indexes for table `comentarios`
+-- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
-  ADD KEY `id_usuario_fk` (`id_usuario_fk`);
+  ADD KEY `id_usuario_fk` (`id_usuario_fk`),
+  ADD KEY `id_planes_fk` (`id_planes_fk`);
 
 --
--- Indexes for table `planes`
+-- Indices de la tabla `planes`
 --
 ALTER TABLE `planes`
   ADD PRIMARY KEY (`id_planes`),
   ADD KEY `id_categoria_fk` (`id_categoria_fk`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `categorias`
+-- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_categoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `comentarios`
+-- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `planes`
+-- AUTO_INCREMENT de la tabla `planes`
 --
 ALTER TABLE `planes`
-  MODIFY `id_planes` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_planes` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `comentarios`
+-- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`),
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_planes_fk`) REFERENCES `planes` (`id_planes`);
 
 --
--- Constraints for table `planes`
+-- Filtros para la tabla `planes`
 --
 ALTER TABLE `planes`
   ADD CONSTRAINT `planes_ibfk_1` FOREIGN KEY (`id_categoria_fk`) REFERENCES `categorias` (`id_categoria`);
