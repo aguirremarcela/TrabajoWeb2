@@ -80,10 +80,6 @@
         $this->model->deletePlan($id);
         header('location:'.BASE_URL.'showBMPlans');
     }
-    public function showEditCategory(){
-        $categories=$this->modelInsurances->getAllCategory();
-        $this->view->showEditCategory($categories);
-    }
     public function editCategory($id){
         $category=$this->modelInsurances->getCategory($id);
         $this->view->editCategory($category);
@@ -104,10 +100,6 @@
         else{
             $this->errorview->showError('No se puede editar si existe un campo vacio, o el formato de la imagen es incorrecto');
         }
-    }
-    public function showEditPlans(){
-        $plans=$this->modelInsurances->getAllPlans();
-        $this->view->showEditPlans($plans);
     }
     public function editPlan($id){
         $plan=$this->modelInsurances->getPlan($id);
@@ -139,6 +131,16 @@
     public function deleteUser($id){
         $this->modelUsers->delete($id);
         header("location: ".BASE_URL.'showUsers');
+    }
+    public function confirmRole($email, $rol){
+        if($rol == 1){
+            $this->modelUsers->confirmRole(0, $email);
+            header("location: ".BASE_URL.'showUsers');
+        }
+        else if ($rol == 0){
+            $this->modelUsers->confirmRole(1, $email);
+            header("location: ".BASE_URL.'showUsers');
+        }
     }
     public function checkLogged(){
         if(session_status()!= PHP_SESSION_ACTIVE){
