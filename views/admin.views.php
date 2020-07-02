@@ -1,19 +1,10 @@
 <?php
-require_once ('libs/smarty/Smarty.class.php');
-class AdminView{
+require_once ('views/base.view.php');
+
+class AdminView extends BaseView{
     private $smarty;
     public function __construct(){
-        $this->smarty = new Smarty();
-        $this->smarty->assign('base_url', BASE_URL);
-        $this->smarty->assign('title','Seguros Marcin');
-        if(session_status()!= PHP_SESSION_ACTIVE){
-            session_start();
-        }
-        if(isset($_SESSION['IS_LOGGED'])){
-            $this->smarty->assign('isLogged',$_SESSION['IS_LOGGED']);
-            $this->smarty->assign('user',$_SESSION['USERNAME']);
-            $this->smarty->assign('administrador',$_SESSION['ROLE']);
-        }       
+        $this->smarty = $this->baseView();
     }
     public function showABM(){
         $this->smarty->display('optionsAdmin.tpl');
@@ -35,17 +26,9 @@ class AdminView{
         $this->smarty->assign('categories', $categories);
         $this->smarty->display('BMCategories.tpl');
     }
-    public function showEditCategory($categories){
-        $this->smarty->assign("categories", $categories);
-        $this->smarty->display('formEditCategory.tpl');
-    }
     public function editCategory($category){
         $this->smarty->assign('category',$category);
         $this->smarty->display('editCategory.tpl');
-    }
-    public function showEditPlans($plans){
-        $this->smarty->assign("plans", $plans);
-        $this->smarty->display('formEditPlans.tpl');
     }
     public function editPlan($plan){
         $this->smarty->assign('plan',$plan);
