@@ -38,4 +38,9 @@
         $sentencia= $db->prepare("DELETE FROM usuarios WHERE id_usuario=?");
         $sentencia->execute([$id]);
      }
+     public function confirmRole($role, $email){
+      $db= $this->createConection();
+      $sentencia= $db->prepare("UPDATE usuarios SET administrador =  ? WHERE usuarios.email = ?");
+      $sentencia->execute([$role, $email]);
+     }
  }
