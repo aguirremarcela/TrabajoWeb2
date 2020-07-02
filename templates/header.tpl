@@ -20,7 +20,7 @@
         {if !empty($user)}
         <div class="dropdown mr-5">
             <!--Si el usuario es administrador agregar un boton para acceder a "administrar"-->
-            {if $administrador == 1}
+            {if $administrator == 1}
             <a class="btn btn-outline-light ml-4 mt-1"href="showABM">Administrar</a>
             {/if}
             <button type="button" class="btn btn-outline-light dropdown-toggle ml-4 mt-1" data-toggle="dropdown">
