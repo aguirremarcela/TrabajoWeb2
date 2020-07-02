@@ -5,7 +5,7 @@
   <base href="{$base_url}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{$title}</title>
+  <title>Seguros Marcín</title>
   <link rel="shorcut icon" type="image/x-icon" href="images/icon.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
