@@ -10,7 +10,8 @@ class BaseView {
         }
         if(isset($_SESSION['IS_LOGGED'])){
             $this->smarty->assign('user',$_SESSION['USERNAME']);
-            $this->smarty->assign('administrator',$_SESSION['ROLE']);
+            $this->smarty->assign('userId',$_SESSION['ID_USER']);
+            $this->smarty->assign('administrator',$_SESSION['ROLE']);  
         }       
         return $this->smarty;
     }
