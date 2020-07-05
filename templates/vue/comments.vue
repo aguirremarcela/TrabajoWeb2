@@ -7,7 +7,11 @@
                     <p>Ususario:  {{comment.email}}</p>
                 </div>
                 <div class="pr-3">
-                    <p>Puntaje del plan:  {{comment.puntaje}}</p>
+                    <p v-if="comment.puntaje == 1">⭐</p>
+                    <p v-else-if="comment.puntaje == 2">⭐⭐</p>
+                    <p v-else-if="comment.puntaje == 3">⭐⭐⭐</p>
+                    <p v-else-if="comment.puntaje == 4">⭐⭐⭐⭐</p>
+                    <p v-else-if="comment.puntaje == 5">⭐⭐⭐⭐⭐</p>
                 </div>
             </div>
             <div class="d-flex justify-content-between form-group text-dark pl-3 pb-3">
