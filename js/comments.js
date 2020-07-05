@@ -1,36 +1,76 @@
 window.addEventListener('DOMContentLoaded', (loadPage));
 'use strict';
-function loadPage(){
-    /*let app = new Vue({
-        el: "#template-vue-comments",
-        data: {
-            subtitle: "Estas tareas se renderizan desde el cliente usando Vue.js",
-            comments: [] 
-        }
-    });*/
 
+function loadPage(){
+    let app = new Vue({
+        el: "#appComments", //id del elemento.
+        data: { //dentro de data definimos todas nuestras variables.
+            admin: 0,
+            comments:[]
+        },
+        methods: {
+            deleteComm: function(id_comment){
+                deleteComment(id_comment);
+            }    
+        }
+    });    
     //Boton que envia un nuevo comentario
-    document.getElementById('btn-Enviar').addEventListener('click', sendComment);
+    let role = document.getElementById('role').value;
+    let idPlan = parseInt(document.getElementById('plan').value);
+    let url = "api/plans/"+idPlan+"/comments";
+    //Al cargar el sitio se ejecuta esta función.
+    getComments();
+    let btnSend = document.getElementById('btn-Enviar');
+    if(btnSend){
+        btnSend.addEventListener('click', sendComment);
+    }
+   
+    function getComments(){
+        if( role == 1){
+            app.admin=1;
+        }
+        fetch(url,{
+        }).then(function (r) {
+            if (r.status == 404){
+            }
+            else if (!r.ok) {
+                alert("No se pudieron traer los datos del servidor");
+            }else {
+                return r.json();
+            }
+        }).then(function (json) {
+            app.comments=json;
+        }).catch(function(e){
+            console.log(e);
+        });
+    }
     
     function sendComment(){
         event.preventDefault();
-        let score = document.getElementById('puntaje').value;
-        let content = document.getElementById('comentario').value;
-        let idUser =  parseInt(document.getElementById('id_usuario_fk').value);
-        let idPlan = parseInt(document.getElementById('plan').value);
-        let url = "api/plans/"+idPlan+"/comments";
-        let comment = {
-            "comentario":content,
-            "puntaje": score,
-            "id_usuario_fk": idUser
-        };
-        console.log(score);
+        let score = document.getElementById('puntaje');
+        let content = document.getElementById('comentario');
+        let idUser =  document.getElementById('id_usuario_fk');
 
+        
         //Comprobar que no sean vacios los campos.
-        if(content === ""|| score === "" || isNaN(idUser)){
-            alert("Todos los campos deben estar completos");
+        if (content.value === ""){
+            alert("Debe realizar un comentario para confirmar el envio");    
             return false;
         }
+        else if (score.value === ""){
+            alert("Debe seleccionar un puntaje para enviar el comentario");    
+            return false;
+        }
+        else if (isNaN(idUser.value)){
+            alert("Solo los ususarios registrados pueden realizar comentarios");    
+            return false;
+        }
+
+        let comment = {
+            "comentario":content.value,
+            "puntaje": parseInt(score.value),
+            "id_usuario_fk":  parseInt(idUser.value)
+        };
 
         fetch(url,{
             "method":"POST",
@@ -44,10 +84,20 @@ function loadPage(){
             }
         }).then(function(){
             content.value = "";
-            score.value   = "";
-            idUser.value  = "";
-            idPlan.value  = "";
-            //ejecutar la funcion que trae todos los comentarios getComments() 
+            score.value = "";
+            idUser.value = "";
+            idPlan = "";
+            getComments();
+        }).catch(function(e){
+            console.log(e);
+        });
+    }
+
+    function deleteComment(id_comment){
+        fetch("api/comments/"+id_comment, {
+            "method": "DELETE",
+        }).then(function() {
+            getComments(); 
         }).catch(function(e){
             console.log(e);
         });
