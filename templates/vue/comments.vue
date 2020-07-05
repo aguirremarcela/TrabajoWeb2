@@ -1,6 +1,8 @@
 {literal}
 <section id="appComments">
+    
     <div class="col-md-6 offset-md-3 mt-4">
+        <div>{{promedio}}</div>
         <div v-for="comment in comments" class="mb-5 bg-light rounded border border-danger">
             <div class="d-flex justify-content-between form-group pl-3 pt-3 pb-2 bg-secondary rounded-top">
                 <div>
