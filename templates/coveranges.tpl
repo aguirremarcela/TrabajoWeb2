@@ -21,23 +21,31 @@
         <p>{$coveranges->descripcion}</p>
     </div>
 </div>
+    <data value="{$administrator}" id="role"></data>
 <div>
-    <form>
-        <data value="{$coveranges->id_planes}" id="plan"></data>
-        <data value="{$userId}" id="id_usuario_fk"></data>
-        <label>Seleccione un puntaje: </label>
-        <select name="puntaje" id="puntaje">
-            <option hidden selected value="">Seleccionar</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <input type="textarea" name="comentario" id="comentario" placeholder="Déjenos saber su opinión">
-        <input type="submit" id="btn-Enviar" value="Enviar">
-    </form>
+    {include "vue/comments.vue"}
 </div>
+    <data value="{$coveranges->id_planes}" id="plan"></data>
+    {if !empty($user)}
+    <h2 class="col-md-6 offset-md-3 mt-4">Dejanos tu comentario!</h2>
+    <form class="col-md-6 offset-md-3 mt-4">
+        <data value="{$userId}" id="id_usuario_fk"></data>
+        <div class="mb-2">
+            <select name="puntaje" id="puntaje" class="btn btn-light selectpicker">
+                <option hidden selected value="">Puntaje</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div>
+            <textarea name="comentario" class="form-control" id="comentario" rows="4" placeholder="Inserte que opina de nuestro plan"></textarea>
+        </div>
+        <input type="submit" id="btn-Enviar" class="btn btn-danger mt-2" value="Enviar">
+    </form>
+    {/if}
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="js/comments.js"></script>
 {include "footer.tpl"}
