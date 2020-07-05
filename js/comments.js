@@ -6,7 +6,8 @@ function loadPage(){
         el: "#appComments", //id del elemento.
         data: { //dentro de data definimos todas nuestras variables.
             admin: 0,
-            comments:[]
+            comments:[],
+            promedio: 0
         },
         methods: {
             deleteComm: function(id_comment){
@@ -39,7 +40,14 @@ function loadPage(){
                 return r.json();
             }
         }).then(function (json) {
+            let cont=0;
+            let sumScore=0;
             app.comments=json;
+            for (let coments of app.comments){
+                sumScore+=parseInt(coments.puntaje);
+                cont++;
+            }
+            app.promedio=parseFloat(sumScore/cont);
         }).catch(function(e){
             console.log(e);
         });
