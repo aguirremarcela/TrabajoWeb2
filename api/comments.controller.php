@@ -1,14 +1,17 @@
 <?php
+require_once 'models/insurances.model.php';
 require_once 'models/comments.model.php';
 require_once 'views/api.view.php';
 
 class CommentsController{
     private $modelComments;
+    private $modelInsurances;
     private $view;
     private $data;
 
     public function __construct() {
         $this->modelComments =  new CommentsModel();
+        $this->modelInsurances = new InsurancesModel();
         $this->view = new APIView();
         $this->data = file_get_contents("php://input");
     }
@@ -17,9 +20,15 @@ class CommentsController{
     }
     public function getComments($params = []){
         $idPlan = $params[':ID'];
-        $comments=$this->modelComments->getAll($idPlan);
-        if(empty($comments)){
-            $this->view->response("no existen comentarios para el plan con id {$idPlan}", 204);
+        $plan = $this->modelInsurances->getPlan($idPlan);
+        $comments = $this->modelComments->getAll($idPlan);
+
+        if(empty($comments) && !empty($plan)){
+            $this->view->response("No existen comentarios para el plan con id {$idPlan}", 204);
+            die();
+        }
+        else if(empty($plan)){
+            $this->view->response("No existe plan con id {$idPlan}", 404);
             die();
         }
         $this->view->response($comments,200);
