@@ -27,13 +27,17 @@ class AdminModel extends BaseModel{
         $sentencia=$this->db->prepare("DELETE FROM categorias  WHERE id_categoria=?");
         $sentencia->execute([$id]);
     }
-    public function saveEditCategory($name,$image,$id_category,$nameImg){
-        $path_img = null;
+    public function saveEditCategory($name,$id_category,$nameImg=null,$image=null){
         if($image){
             $path_img = $this->uploadImage($image, $nameImg);
         }
-        $sentencia = $this->db->prepare("UPDATE categorias SET categoria =  ?, imagen = ?  WHERE categorias.id_categoria = ?");
-        $sentencia->execute([$name,$path_img,$id_category]); 
+        if(!$image){
+            $sentencia = $this->db->prepare("UPDATE categorias SET categoria =  ? WHERE categorias.id_categoria = ?");
+            $sentencia->execute([$name,$id_category]);
+        }else{
+            $sentencia = $this->db->prepare("UPDATE categorias SET categoria =  ?, imagen = ?  WHERE categorias.id_categoria = ?");
+            $sentencia->execute([$name,$path_img,$id_category]);
+        }
     }
     public function saveEditPlan($plan, $cobertura, $descripcion, $id_planes){
         $sentencia = $this->db->prepare("UPDATE planes SET plan =  ?, cobertura = ?, descripcion = ?  WHERE planes.id_planes = ?");
