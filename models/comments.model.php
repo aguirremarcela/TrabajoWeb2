@@ -7,7 +7,7 @@ class CommentsModel extends BaseModel{
     }
     //Realiza el pedido de todos los comentarios correspondientes al id de un plan.s
     public function getAll($id){
-      $sentence = $this->db->prepare("SELECT  comentarios.comentario, comentarios.id_comentario, comentarios.puntaje, usuarios.email
+      $sentence = $this->db->prepare("SELECT  comentarios.comentario, comentarios.id_comentario, comentarios.puntaje, usuarios.usuario
       FROM usuarios JOIN comentarios ON comentarios.id_usuario_fk=usuarios.id_usuario WHERE comentarios.id_planes_fk=?"); 
       $sentence->execute([$id]); 
       $comments = $sentence->fetchAll(PDO::FETCH_OBJ);
