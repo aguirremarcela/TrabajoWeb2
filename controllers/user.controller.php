@@ -19,19 +19,19 @@ class UserController{
                 $this->view->formLogin();
             }
     }
-    public function verify($username = null, $password = null){
+    public function verify($email = null, $password = null){
         if(!empty($_POST)){
-            $username=$_POST['username'];
+            $email=$_POST['email'];
             $password=$_POST['password'];
         }
-        $user=$this->model->get($username);
+        $user=$this->model->get($email);
         if ($user && password_verify($password, $user->password)){
             if(session_status()!= PHP_SESSION_ACTIVE){
                 session_start();
             }
             $_SESSION['IS_LOGGED'] = true;
             $_SESSION['ID_USER'] = $user->id_usuario;
-            $_SESSION['USERNAME'] = $user->email;
+            $_SESSION['EMAIL'] = $user->email;
             $_SESSION['ROLE'] = $user->administrador;
             $this->role($user);
         }
@@ -51,17 +51,27 @@ class UserController{
         $this->view->formRegister();
     }
     public function signUp(){
+        $email=$_POST['email'];
         $username=$_POST['username'];
         $password=$_POST['password'];
         $password2=$_POST['password2'];
-        $user=$this->model->get($username);
-        if(!empty($username) && $password==$password2 && empty( $user)){
+        $user=$this->model->get($email,$username);
+        if(!empty($email) && !empty($username) && $password==$password2 && empty( $user)){
             $Encryted=password_hash($password,PASSWORD_DEFAULT);
-            $this->model->insert($username,$Encryted);
+            $this->model->insert($email,$username,$Encryted);
             $this->verify($username, $password);
         }
-        else{
-            $this->view->formRegister("El usario ya existe o las contraseñas no coinciden");
+        else if(empty($email) || empty($username) || empty($password) || empty($password2)){
+            $this->view->formRegister("Todos los campos deben estar completos");
+        }
+        else if($password != $password2){
+            $this->view->formRegister("Las contraseñas ingresadas no coinciden");
+        }
+        else if($user->email == $email){
+            $this->view->formRegister("La direccion de email ya se encuetra registrada");
+        }
+        else if($user->usuario == $username){
+            $this->view->formRegister("El nombre de usuario ya existe");
         }
     }
     public function logout() {

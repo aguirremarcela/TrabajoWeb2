@@ -130,7 +130,7 @@
             session_start();
         }
         if($_SESSION['IS_LOGGED']){
-            $email=$_SESSION['USERNAME'];
+            $email=$_SESSION['EMAIL'];
         }
         $users=$this->modelUsers->getAll($email);
         $this->view->showAllUsers($users);
