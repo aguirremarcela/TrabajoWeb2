@@ -8,9 +8,15 @@ class UserModel extends BaseModel{
      $this->db=$this->createConection();  
    }
 
-   public function get($username){
-      $sentence= $this->db->prepare("SELECT * FROM usuarios WHERE usuarios.email=?");
-      $sentence->execute([$username]); 
+   public function get($email,$username =null){
+      if($username){
+         $sentence= $this->db->prepare("SELECT * FROM usuarios WHERE usuarios.email=? || usuarios.usuario=?");
+         $sentence->execute([$email,$username]); 
+      }
+      else{
+         $sentence= $this->db->prepare("SELECT * FROM usuarios WHERE usuarios.email=?");
+         $sentence->execute([$email]);
+      }
       $user = $sentence->fetch(PDO::FETCH_OBJ);
       return ($user);
    }
@@ -22,9 +28,9 @@ class UserModel extends BaseModel{
       return ($users);
    }
 
-   public function insert($username,$password){
-      $sentence= $this->db->prepare("INSERT INTO usuarios (email, password) VALUES(?,?)");
-      $sentence->execute([$username,$password]);
+   public function insert($email,$username,$password){
+      $sentence= $this->db->prepare("INSERT INTO usuarios (email, usuario, password) VALUES(?,?,?)");
+      $sentence->execute([$email,$username,$password]);
    }
 
    public function delete($id){
