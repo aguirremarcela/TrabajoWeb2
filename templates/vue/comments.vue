@@ -9,6 +9,9 @@
             </div>
             <p>En un total de {{total}} comentarios</p>
         </div>
+        <div v-else-if="comments == null">
+            <p class="text-muted">Este plan aún no posee opiniones de los usuarios</p>
+        </div>
         <div v-for="comment in comments" class="mb-5 bg-light rounded border border-danger">
             <div class="d-flex justify-content-between form-group pl-3 pt-3 pb-2 bg-secondary rounded-top">
                 <div>
