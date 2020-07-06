@@ -2,7 +2,13 @@
 <section id="appComments">
     
     <div class="col-md-6 offset-md-3 mt-4">
-        <div>{{promedio}}</div>
+        <div v-if="comments != null" class="bg-light pl-3 pr-3 mb-3 rounded border border-danger text-dark">
+            <h2 class="pt-2">Promedio: {{average}}</h2>
+            <div class="progress mb-2">
+                <div id="progress" class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuemin="1" aria-valuemax="5"></div>
+            </div>
+            <p>En un total de {{total}} comentarios</p>
+        </div>
         <div v-for="comment in comments" class="mb-5 bg-light rounded border border-danger">
             <div class="d-flex justify-content-between form-group pl-3 pt-3 pb-2 bg-secondary rounded-top">
                 <div>
