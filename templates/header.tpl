@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <base href="{$base_url}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seguros Marcín</title>
   <link rel="shorcut icon" type="image/x-icon" href="images/icon.png">
+  <!--Bootstrap 4-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <!--Google fonts-->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <!--Esttilos css-->
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/style404notFound.css">
 </head>
