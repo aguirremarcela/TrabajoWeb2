@@ -7,7 +7,8 @@ function loadPage(){
         data: { //dentro de data definimos todas nuestras variables.
             admin: 0,
             comments:[],
-            promedio: 0
+            average: 0,
+            total:0
         },
         methods: {
             deleteComm: function(id_comment){
@@ -40,14 +41,13 @@ function loadPage(){
                 return r.json();
             }
         }).then(function (json) {
-            let cont=0;
-            let sumScore=0;
+        if(json != undefined){
             app.comments=json;
-            for (let coments of app.comments){
-                sumScore+=parseInt(coments.puntaje);
-                cont++;
-            }
-            app.promedio=parseFloat(sumScore/cont);
+            calculateAverage(json);
+        }else{
+            app.comments=null;
+        }
+            
         }).catch(function(e){
             console.log(e);
         });
@@ -59,7 +59,6 @@ function loadPage(){
         let content = document.getElementById('comentario');
         let idUser =  document.getElementById('id_usuario_fk');
 
-        
         //Comprobar que no sean vacios los campos.
         if (content.value === ""){
             alert("Debe realizar un comentario para confirmar el envio");    
@@ -93,8 +92,6 @@ function loadPage(){
         }).then(function(){
             content.value = "";
             score.value = "";
-            idUser.value = "";
-            idPlan = "";
             getComments();
         }).catch(function(e){
             console.log(e);
@@ -110,5 +107,22 @@ function loadPage(){
             console.log(e);
         });
     }
-}
 
+    function calculateAverage(response){
+        let progressBar = document.getElementById('progress');
+        let progress = 0;
+        let sumScore=0;
+        app.average=0;
+        app.total=0;
+
+        for (let item of response){
+            sumScore+=parseInt(item.puntaje);
+            app.total++;
+        }
+        app.average=parseFloat(sumScore/app.total).toFixed(1);
+        progress=((app.average*100)/5).toFixed();
+        if(progressBar != null){
+            progressBar.setAttribute("style", "width: "+ progress+"%");
+        }
+    }
+}
