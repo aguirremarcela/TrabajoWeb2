@@ -16,23 +16,35 @@ function loadPage(){
             }    
         }
     });    
-    //Boton que envia un nuevo comentario
     let role = document.getElementById('role').value;
     let idPlan = parseInt(document.getElementById('plan').value);
     let url = "api/plans/"+idPlan+"/comments";
     //Al cargar el sitio se ejecuta esta función.
     getComments();
+    
+    /*  Boton que envia un nuevo comentario
+        luego nos aseguramos que exista el boton en la vista
+        y ejecuta el evento.
+    */
     let btnSend = document.getElementById('btn-Enviar');
     if(btnSend){
         btnSend.addEventListener('click', sendComment);
     }
-   
+    
+    //Trae los comentarios que corresponden a un plan  
+
     function getComments(){
+        /*  Si el rol en el value de la eiqueta data es 1
+            le asigna el valor 1 a la variable admin.
+        */ 
         if( role == 1){
             app.admin=1;
         }
         fetch(url,{
         }).then(function (r) {
+            /*  Si el status de la respuesta es 204, el plan no tiene comentarios
+                y se le asigna el valor null a la variable comments.
+            */
             if (r.status == 204){
                 app.comments=null;
             }
@@ -50,6 +62,8 @@ function loadPage(){
             console.log(e);
         });
     }
+
+    //Publica un nuevo comentario con el metodo post via api rest.
     
     function sendComment(){
         event.preventDefault();
@@ -70,7 +84,7 @@ function loadPage(){
             showAlert("warning", "", "Solo los ususarios registrados pueden realizar comentarios");    
             return false;
         }
-
+        //Objeto con los datos a enviar.
         let comment = {
             "comentario":content.value,
             "puntaje": parseInt(score.value),
@@ -96,6 +110,7 @@ function loadPage(){
         });
     }
 
+    //Elimina un comentario via api
     function deleteComment(id_comment){
         fetch("api/comments/"+id_comment, {
             "method": "DELETE",
@@ -106,6 +121,7 @@ function loadPage(){
         });
     }
 
+    //Calcula el promedio del puntaje y setea la barra de progeso
     function calculateAverage(response){
         let progressBar = document.getElementById('progress');
         let progress = 0;
@@ -123,7 +139,8 @@ function loadPage(){
             progressBar.setAttribute("style", "width: "+ progress+"%");
         }
     }
-    
+
+    //Muestra un mensaje al usuario, el cual se pasa por parametro.
     function showAlert(icon, title, text){
         Swal.fire({
             icon: icon,
@@ -131,4 +148,6 @@ function loadPage(){
             text: text,
           })
     }
+    //Recarga los comentarios cada 8 segundos.
+    window.setInterval(getComments, 8000);
 }
