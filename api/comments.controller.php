@@ -25,6 +25,12 @@ class CommentsController{
         $this->view->response($comments,200);
     }
     public function addComment($params = []){
+        if(session_status()!= PHP_SESSION_ACTIVE){
+            session_start();
+        }
+        if(!isset($_SESSION['IS_LOGGED'])){
+            die();
+        }
         //Devuelve el objeto JSON enviado por POST.
         $body = $this->getData();
         $comment = $body->comentario;
@@ -40,6 +46,12 @@ class CommentsController{
         }
     }
     public function deleteComments($params = []){
+        if(session_status()!= PHP_SESSION_ACTIVE){
+            session_start();
+        }
+        if($_SESSION['ROLE'] != 1){
+            die();
+        }
         $idComment = $params[':ID'];
         $comment=$this->modelComments->get($idComment);
         if(!empty($comment)){
