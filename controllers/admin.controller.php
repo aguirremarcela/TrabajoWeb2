@@ -89,12 +89,18 @@
         $id_category=$_POST['id_categoria'];
         $imagen=$_FILES['input_name']['tmp_name'];
         $nameImg=$_FILES['input_name']['name'];
-        $categorie=$this->modelInsurances->getCategory($id_category)->imagen;
+        $oldImg=$this->modelInsurances->getCategory($id_category)->imagen;
+
+        if($_FILES['input_name']['error'] == 4 && !empty($oldImg) && !empty($category) && !empty($id_category)){
+            $this->model->saveEditCategory($category,$id_category);
+            header('location:'.BASE_URL.'showBMCategories');
+            die();
+        }
 
         if(!empty($category) && !empty($id_category) && ($_FILES['input_name']['type']== "image/jpg" || $_FILES['input_name']['type']== "image/jpeg" || 
         $_FILES['input_name']['type']== "image/png")){
-            $this->model->saveEditCategory($category,$imagen,$id_category,$nameImg);
-            unlink($categorie);
+            $this->model->saveEditCategory($category,$id_category,$nameImg,$imagen);
+            unlink($oldImg);
             header('location:'.BASE_URL.'showBMCategories');
         }
         else{
