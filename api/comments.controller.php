@@ -19,7 +19,7 @@ class CommentsController{
         $idPlan = $params[':ID'];
         $comments=$this->modelComments->getAll($idPlan);
         if(empty($comments)){
-            $this->view->response("no existen comentarios para el plan con id {$idPlan}", 404);
+            $this->view->response("no existen comentarios para el plan con id {$idPlan}", 204);
             die();
         }
         $this->view->response($comments,200);

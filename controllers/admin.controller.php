@@ -2,12 +2,13 @@
  require_once 'models/admin.model.php';
  require_once 'models/insurances.model.php';
  require_once 'models/user.model.php';
- require_once 'views/admin.views.php';
- require_once 'views/errors.views.php';
+ require_once 'views/admin.view.php';
+ require_once 'views/errors.view.php';
  
  class AdminController{
     private $model;
     private $modelInsurances;
+    private $modelUsers;
     private $view;
     private $errorview;
     public function __construct(){
@@ -26,12 +27,12 @@
         $this->view->formAddCategory($categories);
     }
     public function addCategory(){
-        $categoria=$_POST['categoria'];
-        $imagen=$_FILES['input_name']['tmp_name'];
+        $category=$_POST['categoria'];
+        $image=$_FILES['input_name']['tmp_name'];
         $nameImg=$_FILES['input_name']['name'];
-        if(!empty($categoria) && ($_FILES['input_name']['type']== "image/jpg" || $_FILES['input_name']['type']== "image/jpeg" || 
+        if(!empty($category) && ($_FILES['input_name']['type']== "image/jpg" || $_FILES['input_name']['type']== "image/jpeg" || 
         $_FILES['input_name']['type']== "image/png")){
-            $this->model->insertCategory($categoria,$imagen,$nameImg);
+            $this->model->insertCategory($category,$image,$nameImg);
             header('location:'.BASE_URL.'showAddCategory');
         }
         else{
@@ -45,11 +46,11 @@
     }
     public function addPlan(){
         $plan = $_POST['plan'];
-        $cobertura=$_POST['cobertura'];
-        $descripcion=$_POST['descripcion'];
-        $id_categoria=$_POST['id_categoria_fk'];
-        if(!empty($plan)&& !empty($cobertura) && !empty($id_categoria) ){
-            $this->model->insertPlan($plan,$cobertura,$descripcion,$id_categoria);
+        $coverange=$_POST['cobertura'];
+        $description=$_POST['descripcion'];
+        $id_category=$_POST['id_categoria_fk'];
+        if(!empty($plan)&& !empty($coverange) && !empty($id_category) ){
+            $this->model->insertPlan($plan,$coverange,$description,$id_category);
             header('location:'.BASE_URL.'showAddPlan');
         }
         else{
@@ -62,10 +63,10 @@
     }
     public function deleteCategory($id){
         $planes=$this->modelInsurances->getPlans($id);
-        $categorie=$this->modelInsurances->getCategory($id)->imagen;
+        $category=$this->modelInsurances->getCategory($id)->imagen;
         if(empty($planes)){
             $this->model->deleteCategory($id);
-            unlink($categorie);
+            unlink($category);
             header('location:'.BASE_URL.'showBMCategories');
         }
         else{
@@ -87,7 +88,7 @@
     public function saveEditCategory(){
         $category = $_POST['categoria'];
         $id_category=$_POST['id_categoria'];
-        $imagen=$_FILES['input_name']['tmp_name'];
+        $image=$_FILES['input_name']['tmp_name'];
         $nameImg=$_FILES['input_name']['name'];
         $oldImg=$this->modelInsurances->getCategory($id_category)->imagen;
 
@@ -99,7 +100,7 @@
 
         if(!empty($category) && !empty($id_category) && ($_FILES['input_name']['type']== "image/jpg" || $_FILES['input_name']['type']== "image/jpeg" || 
         $_FILES['input_name']['type']== "image/png")){
-            $this->model->saveEditCategory($category,$id_category,$nameImg,$imagen);
+            $this->model->saveEditCategory($category,$id_category,$nameImg,$image);
             unlink($oldImg);
             header('location:'.BASE_URL.'showBMCategories');
         }
@@ -113,11 +114,11 @@
     }
     public function saveEditPlan(){
         $plan = $_POST['plan'];
-        $cobertura = $_POST['cobertura'];
-        $descripcion = $_POST['descripcion'];
-        $id_planes=$_POST['id_planes'];
-        if(!empty($plan) && !empty($cobertura) && !empty($descripcion) && !empty($id_planes)){
-            $this->model->saveEditPlan($plan, $cobertura, $descripcion, $id_planes);
+        $coverange = $_POST['cobertura'];
+        $description = $_POST['descripcion'];
+        $id_plans=$_POST['id_planes'];
+        if(!empty($plan) && !empty($coverange) && !empty($description) && !empty($id_plans)){
+            $this->model->saveEditPlan($plan, $coverange, $description, $id_plans);
             header('location:'.BASE_URL.'showBMPlans');
         }
         else{
@@ -138,12 +139,12 @@
         $this->modelUsers->delete($id);
         header("location: ".BASE_URL.'showUsers');
     }
-    public function confirmRole($email, $rol){
-        if($rol == 1){
+    public function confirmRole($email, $role){
+        if($role == 1){
             $this->modelUsers->confirmRole(0, $email);
             header("location: ".BASE_URL.'showUsers');
         }
-        else if ($rol == 0){
+        else if ($role == 0){
             $this->modelUsers->confirmRole(1, $email);
             header("location: ".BASE_URL.'showUsers');
         }

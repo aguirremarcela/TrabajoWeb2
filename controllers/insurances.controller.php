@@ -1,7 +1,7 @@
 <?php
     require_once 'models/insurances.model.php';
-    require_once 'views/insurances.views.php';
-    require_once 'views/errors.views.php';
+    require_once 'views/insurances.view.php';
+    require_once 'views/errors.view.php';
 
     class InsurancesController{
         private $model;
@@ -13,8 +13,8 @@
             $this->viewError=new ErrorsView();
         }
         public function showInsurances(){
-            $categorias=$this->model->getAllCategory();
-            $this->view->showInsurances($categorias);
+            $categories=$this->model->getAllCategory();
+            $this->view->showInsurances($categories);
         }
         public function showContacts(){
             $this->view->showContacts();

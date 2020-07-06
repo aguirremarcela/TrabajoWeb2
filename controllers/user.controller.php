@@ -24,7 +24,7 @@ class UserController{
             $username=$_POST['username'];
             $password=$_POST['password'];
         }
-        $user=$this->model->getUser($username);
+        $user=$this->model->get($username);
         if ($user && password_verify($password, $user->password)){
             if(session_status()!= PHP_SESSION_ACTIVE){
                 session_start();
@@ -54,10 +54,10 @@ class UserController{
         $username=$_POST['username'];
         $password=$_POST['password'];
         $password2=$_POST['password2'];
-        $user=$this->model->getUser($username);
+        $user=$this->model->get($username);
         if(!empty($username) && $password==$password2 && empty( $user)){
             $Encryted=password_hash($password,PASSWORD_DEFAULT);
-            $this->model->insertUser($username,$Encryted);
+            $this->model->insert($username,$Encryted);
             $this->verify($username, $password);
         }
         else{
