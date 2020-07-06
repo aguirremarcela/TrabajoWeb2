@@ -46,6 +46,10 @@
         <input type="submit" id="btn-Enviar" class="btn btn-danger mt-2" value="Enviar">
     </form>
     {/if}
+<!--Vue-->    
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--sweet alert 2-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!--Script js-->
 <script src="js/comments.js"></script>
 {include "footer.tpl"}
