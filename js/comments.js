@@ -33,10 +33,11 @@ function loadPage(){
         }
         fetch(url,{
         }).then(function (r) {
-            if (r.status == 404){
+            if (r.status == 204){
+                app.comments=null;
             }
             else if (!r.ok) {
-                alert("No se pudieron traer los datos del servidor");
+                showAlert("error", "Oops..", "No se pudieron traer los datos del servidor");
             }else {
                 return r.json();
             }
@@ -44,10 +45,7 @@ function loadPage(){
         if(json != undefined){
             app.comments=json;
             calculateAverage(json);
-        }else{
-            app.comments=null;
-        }
-            
+        }  
         }).catch(function(e){
             console.log(e);
         });
@@ -61,15 +59,15 @@ function loadPage(){
 
         //Comprobar que no sean vacios los campos.
         if (content.value === ""){
-            alert("Debe realizar un comentario para confirmar el envio");    
+            showAlert("info", "", "Debe realizar un comentario para confirmar el envio");    
             return false;
         }
         else if (score.value === ""){
-            alert("Debe seleccionar un puntaje para enviar el comentario");    
+            showAlert("info", "", "Debe seleccionar un puntaje para enviar el comentario");    
             return false;
         }
         else if (isNaN(idUser.value)){
-            alert("Solo los ususarios registrados pueden realizar comentarios");    
+            showAlert("warning", "", "Solo los ususarios registrados pueden realizar comentarios");    
             return false;
         }
 
@@ -85,9 +83,9 @@ function loadPage(){
             "body": JSON.stringify(comment)
         }).then(function(r){
             if(!r.ok){
-                alert("No se pudo enviar el comentario");
+                showAlert("error", "Oops..", "No se pudo enviar el comentario");
             }else{
-                alert("El comentario ha sido enviado con exito");
+                showAlert("success", "Envío exitoso!", "Su comentario fue publicado correctamente");
             }
         }).then(function(){
             content.value = "";
@@ -124,5 +122,13 @@ function loadPage(){
         if(progressBar != null){
             progressBar.setAttribute("style", "width: "+ progress+"%");
         }
+    }
+    
+    function showAlert(icon, title, text){
+        Swal.fire({
+            icon: icon,
+            title: title,
+            text: text,
+          })
     }
 }
