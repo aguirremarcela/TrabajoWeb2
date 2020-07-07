@@ -13,4 +13,12 @@ class UserView extends BaseView{
         $this->smarty->assign('error',$error);
         $this->smarty->display('formRegister.tpl');
     }
+    public function showRecoverPass(){
+        $this->smarty->display('formRecoverPass.tpl');
+    }
+
+    public function formChangePass($email){
+        $this->smarty->assign('email',$email);
+        $this->smarty->display('formChangePass.tpl');
+    }
 }

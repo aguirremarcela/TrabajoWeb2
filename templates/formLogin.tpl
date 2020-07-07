@@ -17,5 +17,6 @@
         </div>
         {/if}
         <input type="submit" class="btn btn-primary"/>
-    </form>
+        <a class="btn btn-primary ml-5" href="recoverPassword">Olvidé mi contarseña</a>
+        </form>
 {include 'footer.tpl'}
