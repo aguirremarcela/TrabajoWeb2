@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 06, 2020 at 08:57 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.29
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-07-2020 a las 19:19:14
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_seguros`
+-- Base de datos: `db_seguros`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorias`
+-- Estructura de tabla para la tabla `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -34,21 +34,21 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categorias`
+-- Volcado de datos para la tabla `categorias`
 --
 
 INSERT INTO `categorias` (`id_categoria`, `categoria`, `imagen`) VALUES
-(1, 'Automotores', 'uploads/images/5f026b93b7a304.38357911.jpg'),
-(2, 'Motos', 'uploads/images/5eff89e7814084.23664702.jpg'),
-(3, 'Hogar', 'uploads/images/5eff89efde2155.64381056.jpg'),
-(4, 'Accidentes Personales', 'uploads/images/5eff89f7d1f922.06227127.jpg'),
-(5, 'Vida', 'uploads/images/5eff8a0294f7b4.40980617.jpg'),
-(6, 'Agrícolas', 'uploads/images/5eff8a08cbb321.82416660.jpg');
+(1, 'Automotores', 'uploads/images/5f037561651b51.01357282.jpg'),
+(2, 'Motos', 'uploads/images/5f03756b53e7e3.50489123.jpg'),
+(3, 'Hogar', 'uploads/images/5f037574d5e0b7.61974086.jpg'),
+(4, 'Accidentes Personales', 'uploads/images/5f03757fadd111.22816383.jpg'),
+(5, 'Vida', 'uploads/images/5f03758a4522d5.67098729.jpg'),
+(6, 'Agrícolas', 'uploads/images/5f03759342a7f4.73314547.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comentarios`
+-- Estructura de tabla para la tabla `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -60,18 +60,16 @@ CREATE TABLE `comentarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `comentarios`
+-- Volcado de datos para la tabla `comentarios`
 --
 
 INSERT INTO `comentarios` (`id_comentario`, `comentario`, `puntaje`, `id_usuario_fk`, `id_planes_fk`) VALUES
-(79, 'c xc xdcsd', 4, 1, 4),
-(80, 'sdcsdc', 2, 1, 4),
-(82, 'Muy recomendable', 5, 2, 4);
+(4, 'Genial', 5, 2, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `planes`
+-- Estructura de tabla para la tabla `planes`
 --
 
 CREATE TABLE `planes` (
@@ -83,7 +81,7 @@ CREATE TABLE `planes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `planes`
+-- Volcado de datos para la tabla `planes`
 --
 
 INSERT INTO `planes` (`id_planes`, `plan`, `cobertura`, `descripcion`, `id_categoria_fk`) VALUES
@@ -102,7 +100,7 @@ INSERT INTO `planes` (`id_planes`, `plan`, `cobertura`, `descripcion`, `id_categ
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -110,30 +108,32 @@ CREATE TABLE `usuarios` (
   `email` varchar(50) NOT NULL,
   `usuario` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `token` varchar(20) NOT NULL,
   `administrador` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `email`, `usuario`, `password`, `administrador`) VALUES
-(1, 'aguirremarcela@hotmail.com.ar', 'aguirremarcela', '$2y$12$F7t4Mjv6wWGttGVAuozTyexkGCnlXaSMfjSTl11o/NNH2FaNpnxmK', 1),
-(2, 'joaquin_loiza@hotmail.com', 'loizajoaquin', '$2y$12$Bq4sVJpy7tgOnRjCsoItEuSUWfLY.lqv3wiyDuK5h3adWFrnj2bme', 1),
-(11, 'romina_dehesa@hotmail.com', 'dehesaromina', '$2y$10$Ik.Bwm/jYAaR7hVaisnkb.HNUt8mL87Ukza3TbUbafDyo1cRg8Afu', 0);
+INSERT INTO `usuarios` (`id_usuario`, `email`, `usuario`, `password`, `token`, `administrador`) VALUES
+(1, 'aguirremarcela@hotmail.com.ar', 'aguirremarcela', '$2y$12$F7t4Mjv6wWGttGVAuozTyexkGCnlXaSMfjSTl11o/NNH2FaNpnxmK', '', 1),
+(2, 'joaquin_loiza@hotmail.com', 'loizajoaquin', '$2y$10$88EM4Vue2KhHTaW3KPEc5OQn589OOIhNMZ9FK7b1S9/AGTHIkjKCm', '', 1),
+(3, 'romina_dehesa@hotmail.com', 'dehesaromina', '$2y$10$Ik.Bwm/jYAaR7hVaisnkb.HNUt8mL87Ukza3TbUbafDyo1cRg8Afu', '', 0),
+(4, 'style.gra.rivero@gmail.com', 'Gra.Rivero', '$2y$10$AS/2JVOg1nJBnVPK83Ws0.chz4Jchcz0pO/tRKyU86e4EcHIyyele', '', 0);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `categorias`
+-- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indexes for table `comentarios`
+-- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
@@ -141,59 +141,59 @@ ALTER TABLE `comentarios`
   ADD KEY `id_planes_fk` (`id_planes_fk`);
 
 --
--- Indexes for table `planes`
+-- Indices de la tabla `planes`
 --
 ALTER TABLE `planes`
   ADD PRIMARY KEY (`id_planes`),
   ADD KEY `id_categoria_fk` (`id_categoria_fk`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `categorias`
+-- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `id_categoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `comentarios`
+-- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `planes`
+-- AUTO_INCREMENT de la tabla `planes`
 --
 ALTER TABLE `planes`
   MODIFY `id_planes` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `comentarios`
+-- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_planes_fk`) REFERENCES `planes` (`id_planes`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `planes`
+-- Filtros para la tabla `planes`
 --
 ALTER TABLE `planes`
   ADD CONSTRAINT `planes_ibfk_1` FOREIGN KEY (`id_categoria_fk`) REFERENCES `categorias` (`id_categoria`);
