@@ -8,12 +8,12 @@ body{
     width: 180px;
 }
 .navABM div{
-    margin-bottom: 7%;
-    margin-left: 12%;
+    padding-bottom: 7%;
+    padding-left: 12%;
 }
 .navABM a{
     text-decoration: none;
-    color:#ff5555;
+    color:whitesmoke;
     text-shadow: 0.1em 0.1em rgb(37, 37, 37);
 }
 .title_insurances{
