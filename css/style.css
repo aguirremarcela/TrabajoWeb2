@@ -16,13 +16,13 @@ body{
     color:#ff5555;
     text-shadow: 0.1em 0.1em rgb(37, 37, 37);
 }
-.titulo_seguros{
+.title_insurances{
     font-size: 2.5rem;
     text-align: center;
     margin-top: 20px;
     text-shadow: 0.1em 0.1em rgb(37, 37, 37);           
 }
-.cont_cat{
+.cont_categories{
     align-items: center;
     display: flex;
     justify-content: space-around;
@@ -31,13 +31,12 @@ body{
     max-width: 1200px;
     flex-wrap: wrap
 }
-.caja{
+.cont_category{
     -webkit-box-shadow: 18px 32px 15px -4px rgba(0,0,0,0.4);
     -moz-box-shadow: 18px 32px 15px -4px rgba(0,0,0,0.4);
     box-shadow: 18px 32px 15px -4px rgba(0,0,0,0.4);    
     width: 160px;
     height: 160px;
-    background: linear-gradient(to left, #256779, #7dc1a3);
     background-size: 100%;
     margin: 3% 6% 3% 6%;
     display: flex;
@@ -45,7 +44,7 @@ body{
     align-items:center ;
     border:3px solid #161616;
 }
-.caja:hover{
+.cont_category:hover{
     background-image: none !important;
     color: white;
     background-color: #d24553;
@@ -58,19 +57,19 @@ body{
 .items:hover{
     font-size: 22px;
 }
-.contPlanes{
+.cont_plans{
     margin-top: 3%;
     margin-left: 10%;
 }
-.contPlanes li{
+.cont_plans li{
     list-style: none;
 }
-.contPlanes li a{
+.cont_plans li a{
     text-decoration: none;
     color:#ff5555;
     text-shadow: 0.1em 0.1em rgb(37, 37, 37);
 }
-.contCoverange{
+.contCoverage{
     width: 80%;
     margin: 0 auto;
 }

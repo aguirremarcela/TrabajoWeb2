@@ -1,5 +1,5 @@
 {include "header.tpl"}
-<div class="contPlanes">
+<div class="cont_plans">
     <h1>{$plans[0]->categoria}</h1>
     <ul>
         {foreach from=$plans item=plan}
@@ -11,7 +11,7 @@
     </ul>
 </div>
 <h2 class="d-flex justify-content-center">{$coverages->plan}</h2>
-<div class="d-flex flex-column contCoverange">
+<div class="d-flex flex-column contCoverage">
     <div>
         <h3>Cobertura</h3>
         <p>{$coverages->cobertura}</p>

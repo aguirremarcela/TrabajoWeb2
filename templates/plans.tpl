@@ -1,5 +1,5 @@
 {include "header.tpl"}
-<div class="contPlanes">
+<div class="cont_plans">
     {if !empty($plans[0]->categoria)}
         <h1>{$plans[0]->categoria}</h1>
     {/if}
