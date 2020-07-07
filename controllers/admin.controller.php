@@ -19,13 +19,19 @@
         $this->errorview= new ErrorsView();
         $this->checkLogged();
     }
+
+    //Muestra una barra de navegacion con funciones ABM.
     public function showABM(){
         $this->view->showABM();
     }
+
+    //Muestra el formulario para agregar categoria.
     public function showAddCategory(){
         $categories=$this->modelInsurances->getAllCategory();
         $this->view->formAddCategory($categories);
     }
+
+    //Agrega una categoria.
     public function addCategory(){
         $category=$_POST['categoria'];
         $image=$_FILES['input_name']['tmp_name'];
@@ -39,11 +45,15 @@
             $this->errorview->showError('El campo categoria se encuentra vacío o el formato de la imagen no es admitido');
         }
     }
+
+    //Muestra el formulario para agregar un plan.
     public function showAddplan(){
         $categories=$this->modelInsurances->getAllCategory();
         $plans=$this->modelInsurances->getAllPlans();
         $this->view->showAddplan($categories, $plans);                                    
     }
+
+    //Agrega un plan.
     public function addPlan(){
         $plan = $_POST['plan'];
         $coverange=$_POST['cobertura'];
@@ -57,10 +67,14 @@
             $this->errorview->showError('Existen uno o mas campos vacios');
         }
     }
+
+    //Muestra todas las categorias con botones de eliminar y editar.
     public function showBMCategories(){
         $categories=$this->modelInsurances->getAllCategory();
         $this->view->showAllCategories($categories);
     }
+
+    //Elimina una categoria.
     public function deleteCategory($id){
         $planes=$this->modelInsurances->getPlans($id);
         $category=$this->modelInsurances->getCategory($id)->imagen;
@@ -73,14 +87,20 @@
             $this->errorview->showError('No se puede eliminar esta categoria porque tiene planes asociados a ella');
         }
     }
+
+    //Muestra todos los planes con los botones de eliminar y editar.
     public function showBMPlan(){
         $plans=$this->modelInsurances->getAllPlans();
         $this->view->showAllPlans($plans);
     }
+
+    //Elimina un plan.
     public function deletePlan($id){
         $this->model->deletePlan($id);
         header('location:'.BASE_URL.'showBMPlans');
     }
+
+    //Muestra el formulario para editar una categoria.
     public function editCategory($id){
         $category=$this->modelInsurances->getCategory($id);
         if($category !=false){
@@ -90,6 +110,8 @@
             $this->errorview->pageNotFound();
         }
     }
+
+    //Guarda la edicion de una categoria.
     public function saveEditCategory(){
         $category = $_POST['categoria'];
         $id_category=$_POST['id_categoria'];
@@ -113,6 +135,8 @@
             $this->errorview->showError('No se puede editar si existe un campo vacio, o el formato de la imagen es incorrecto');
         }
     }
+
+    //Muestra el formulario para editar un plan.
     public function editPlan($id){
         $plan=$this->modelInsurances->getPlan($id);
         
@@ -123,6 +147,8 @@
             $this->errorview->pageNotFound();
         }
     }
+
+    //Guarda la edicion de un plan.
     public function saveEditPlan(){
         $plan = $_POST['plan'];
         $coverange = $_POST['cobertura'];
@@ -136,6 +162,8 @@
             $this->errorview->showError('No se puede editar si existe un campo vacio');
         }
     }
+
+    //Muestra el listado de usuarios con los botones para eliminar y cambiar de rol.
     public function showUsers(){
         if(session_status()!= PHP_SESSION_ACTIVE){
             session_start();
@@ -146,10 +174,14 @@
         $users=$this->modelUsers->getAll($email);
         $this->view->showAllUsers($users);
     }
+
+    //Elimina un usuario.
     public function deleteUser($id){
         $this->modelUsers->delete($id);
         header("location: ".BASE_URL.'showUsers');
     }
+
+    //Cambia el rol de un usuario.
     public function confirmRole($email, $role){
         if($role == 1){
             $this->modelUsers->confirmRole(0, $email);
@@ -160,6 +192,8 @@
             header("location: ".BASE_URL.'showUsers');
         }
     }
+
+    //Chequea si existe un usuario logueado.
     public function checkLogged(){
         if(session_status()!= PHP_SESSION_ACTIVE){
             session_start();

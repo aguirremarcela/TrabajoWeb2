@@ -13,11 +13,16 @@ class CommentsController{
         $this->modelComments =  new CommentsModel();
         $this->modelInsurances = new InsurancesModel();
         $this->view = new APIView();
+        //Permite leer datos del cuerpo solicitado.
         $this->data = file_get_contents("php://input");
     }
+
+    //Convierte un string codificado en JSON a una variable de PHP.
     public function getData(){
         return json_decode($this->data);
     }
+
+    //Trae los comentarios segun el plan y se los envia a la vista.
     public function getComments($params = []){
         $idPlan = $params[':ID'];
         $plan = $this->modelInsurances->getPlan($idPlan);
@@ -33,13 +38,10 @@ class CommentsController{
         }
         $this->view->response($comments,200);
     }
+
+    //Agrega comentarios en la base de datos.
     public function addComment($params = []){
-        if(session_status()!= PHP_SESSION_ACTIVE){
-            session_start();
-        }
-        if(!isset($_SESSION['IS_LOGGED'])){
-            die();
-        }
+
         //Devuelve el objeto JSON enviado por POST.
         $body = $this->getData();
         $comment = $body->comentario;
@@ -54,13 +56,9 @@ class CommentsController{
             $this->view->response("error", 404);
         }
     }
+
+    //Elimina un comentario de la base de datos.
     public function deleteComments($params = []){
-        if(session_status()!= PHP_SESSION_ACTIVE){
-            session_start();
-        }
-        if($_SESSION['ROLE'] != 1){
-            die();
-        }
         $idComment = $params[':ID'];
         $comment=$this->modelComments->get($idComment);
         if(!empty($comment)){

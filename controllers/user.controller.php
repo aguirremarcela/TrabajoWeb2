@@ -8,6 +8,8 @@ class UserController{
         $this->model=new UserModel();
         $this->view=new UserView();
     }
+
+    //Chequea si una sesion esta activa, de lo contrario muestra el formulario login. 
     public function showLogin(){
         if(session_status()!= PHP_SESSION_ACTIVE){
             session_start();
@@ -19,37 +21,33 @@ class UserController{
                 $this->view->formLogin();
             }
     }
+
+    //Verifica que el email y password ingresados sean correctos.
     public function verify($email = null, $password = null){
+        /*Si los datos no vienen por POST es porque llegaron de formulario de 
+        registro y loquea al usuario.*/
         if(!empty($_POST)){
             $email=$_POST['email'];
             $password=$_POST['password'];
         }
         $user=$this->model->get($email);
+
+        /*Comprueba que el usuario exista y que la contraseña sea igual a la db
+           y en ese caso lo loguea.*/
         if ($user && password_verify($password, $user->password)){
-            if(session_status()!= PHP_SESSION_ACTIVE){
-                session_start();
-            }
-            $_SESSION['IS_LOGGED'] = true;
-            $_SESSION['ID_USER'] = $user->id_usuario;
-            $_SESSION['EMAIL'] = $user->email;
-            $_SESSION['ROLE'] = $user->administrador;
-            $this->role($user);
+            $this->login($user);
         }
         else{
             $this->view->formLogin("Los datos son incorrectos");
         }
     }
-    private function role($user){
-        if($user->administrador == 1){
-            header("Location: " . BASE_URL . 'showABM');
-        }
-        else{
-            header("Location: " . BASE_URL . 'home');
-        }
-    }
+
+    //Muestra el formulario para registrarse.
     public function showRegister(){
         $this->view->formRegister();
     }
+
+    //Recoge los datos de formulario, comprueba que los datos sean correctos y lo registra.
     public function signUp(){
         $email=$_POST['email'];
         $username=$_POST['username'];
@@ -74,11 +72,25 @@ class UserController{
             $this->view->formRegister("El nombre de usuario ya existe");
         }
     }
+
+    //Cierra una sesion.
     public function logout() {
         if(session_status()!= PHP_SESSION_ACTIVE){
             session_start();
         }
         session_destroy();
+        header("Location: " . BASE_URL . 'home');
+    }
+
+    //Inicia y setea los datos en la sesion.
+    public function login($user) {
+        if(session_status()!= PHP_SESSION_ACTIVE){
+            session_start();
+        }
+        $_SESSION['IS_LOGGED'] = true;
+        $_SESSION['ID_USER'] = $user->id_usuario;
+        $_SESSION['EMAIL'] = $user->email;
+        $_SESSION['ROLE'] = $user->administrador;
         header("Location: " . BASE_URL . 'home');
     }
 }
