@@ -47,4 +47,31 @@ class UserModel extends BaseModel{
       $sentence= $this->db->prepare("UPDATE usuarios SET administrador =  ? WHERE usuarios.email = ?");
       $sentence->execute([$role, $email]);
    }
+
+   //Inserta el token a un usuario
+   public function insertToken($token, $email){
+      $sentence= $this->db->prepare("UPDATE usuarios SET token =  ? WHERE usuarios.email = ?");
+      $sentence->execute([$token, $email]);
+   }
+
+   //devuelve el usuario donde el token coincide y borra el token
+   public function verifyToken($token){
+      $sentence= $this->db->prepare("SELECT * FROM usuarios WHERE usuarios.token=?");
+      $sentence->execute([$token]);
+      $user = $sentence->fetch(PDO::FETCH_OBJ);
+      return ($user);
+   }
+
+   //Actualiza la contraseña
+   public function updatePass($password, $email){
+      $sentence= $this->db->prepare("UPDATE usuarios SET password = ? WHERE usuarios.email = ?");
+      $sentence->execute([$password, $email]);
+      $this->deleteToken($email);
+   }
+
+   //Borra el token
+   public function deleteToken($email){
+      $sentence= $this->db->prepare("UPDATE usuarios SET token = ? WHERE usuarios.email = ?");
+      $sentence->execute(['', $email]);
+   }
  }

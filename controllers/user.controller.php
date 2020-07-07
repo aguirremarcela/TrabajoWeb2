@@ -1,12 +1,16 @@
 <?php
 require_once 'models/user.model.php';
 require_once 'views/user.view.php';
+require_once 'views/errors.view.php';
+
 class UserController{
     private $model;
     private $view;
+    private $viewError;
     public function __construct(){
         $this->model=new UserModel();
         $this->view=new UserView();
+        $this->viewError=new ErrorsView();
     }
 
     //Chequea si una sesion esta activa, de lo contrario muestra el formulario login. 
@@ -92,5 +96,50 @@ class UserController{
         $_SESSION['EMAIL'] = $user->email;
         $_SESSION['ROLE'] = $user->administrador;
         header("Location: " . BASE_URL . 'home');
+    }
+
+    //Muestra un campo para recuperar contraseña.
+    public function recoverPassword(){
+        $this->view->showRecoverPass();
+    }
+
+    //Confirma si el usuario existe y envia el link de recuperacion.
+    public function confirmRecover(){
+        $email=$_POST['email'];
+        $user=$this->model->get($email);
+        if($user != false){
+            $token=uniqid();
+            $this->model->insertToken($token, $email);
+            
+            var_dump("http://localhost/web2/TrabajoWeb2/changePassword?token={$token}"); die();
+        }
+        else{
+            $this->viewError->showError("El email ingresado no está registrado en este sitio");
+        }
+    }
+
+    //Recupera el token del link, recupera el usuario y da paso a cambiar el password.
+    public function changePassword(){
+        $token = $_GET ['token'];
+        $user= $this->model->verifyToken($token);
+        $email=$user->email;
+        if($user =! false){
+            $this->view->formChangePass($email);
+        }
+    }
+
+    //Confirma la nueva contraseña.
+    public function confirmChangePass(){
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        $password2=$_POST['password2'];
+        if ($password == $password2){
+            $Encryted=password_hash($password,PASSWORD_DEFAULT);
+            $this->model->updatePass($Encryted, $email);
+            header("Location: " . BASE_URL . 'login');
+        }
+        else{
+            $this->viewError->showError("Las contraseñas ingresadas no coinciden");
+        }
     }
 }
