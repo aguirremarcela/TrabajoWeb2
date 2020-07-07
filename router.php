@@ -56,7 +56,23 @@
         case 'logout':
             $controller=new UserController();
             $controller->logout();
-        break;    
+        break;  
+        case 'recoverPassword':
+            $controller=new UserController();
+            $controller->recoverPassword();
+        break;
+        case 'confirmRecover':
+            $controller=new UserController();
+            $controller->confirmRecover();
+        break;   
+        case 'changePassword':
+            $controller=new UserController();
+            $controller->changePassword();
+        break;
+        case 'confirmChangePass':
+            $controller=new UserController();
+            $controller->confirmChangePass();
+        break;
         case'showABM':
             $controller= new AdminController();
             $controller->showABM();
