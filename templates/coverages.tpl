@@ -10,22 +10,22 @@
         {/foreach}
     </ul>
 </div>
-<h2 class="d-flex justify-content-center">{$coveranges->plan}</h2>
+<h2 class="d-flex justify-content-center">{$coverages->plan}</h2>
 <div class="d-flex flex-column contCoverange">
     <div>
         <h3>Cobertura</h3>
-        <p>{$coveranges->cobertura}</p>
+        <p>{$coverages->cobertura}</p>
     </div>
     <div>
         <h3>Descripción</h3>
-        <p>{$coveranges->descripcion}</p>
+        <p>{$coverages->descripcion}</p>
     </div>
 </div>
     <data value="{$administrator}" id="role"></data>
 <div>
     {include "vue/comments.vue"}
 </div>
-    <data value="{$coveranges->id_planes}" id="plan"></data>
+    <data value="{$coverages->id_planes}" id="plan"></data>
     {if !empty($user)}
     <h2 class="col-md-6 offset-md-3 mt-4">Dejanos tu comentario!</h2>
     <form class="col-md-6 offset-md-3 mt-4">
