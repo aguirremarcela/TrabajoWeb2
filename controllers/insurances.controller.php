@@ -24,12 +24,22 @@
         }
         public function showPlans($id){
             $planes=$this->model->getPlans($id);
-            $this->view->showPlans($planes);
+            if(!empty($planes)){
+                $this->view->showPlans($planes);
+            }
+            else{
+                $this->pageNotFound();
+            }
         }
         public function showCoverange($id_plan){
             $coverange=$this->model->getPlan($id_plan);
-            $planes=$this->model->getPlans($coverange->id_categoria_fk);
-            $this->view->showCoverange($coverange, $planes);
+            if($coverange != false){
+                $planes=$this->model->getPlans($coverange->id_categoria_fk);
+                $this->view->showCoverange($coverange, $planes);
+            }
+            else{
+                $this->pageNotFound();
+            }
         }
         public function pageNotFound(){
             $this->viewError->pageNotFound();

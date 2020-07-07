@@ -83,7 +83,12 @@
     }
     public function editCategory($id){
         $category=$this->modelInsurances->getCategory($id);
-        $this->view->editCategory($category);
+        if($category !=false){
+            $this->view->editCategory($category);
+        }
+        else{
+            $this->errorview->pageNotFound();
+        }
     }
     public function saveEditCategory(){
         $category = $_POST['categoria'];
@@ -110,7 +115,13 @@
     }
     public function editPlan($id){
         $plan=$this->modelInsurances->getPlan($id);
-        $this->view->editPlan($plan);
+        
+        if($plan != false){
+            $this->view->editPlan($plan);
+        }
+        else{
+            $this->errorview->pageNotFound();
+        }
     }
     public function saveEditPlan(){
         $plan = $_POST['plan'];
