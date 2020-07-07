@@ -1,7 +1,7 @@
 <?php
 require_once 'models/insurances.model.php';
 require_once 'models/comments.model.php';
-require_once 'views/api.view.php';
+require_once 'api.view.php';
 
 class CommentsController{
     private $modelComments;

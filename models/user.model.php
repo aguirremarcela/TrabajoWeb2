@@ -8,6 +8,7 @@ class UserModel extends BaseModel{
      $this->db=$this->createConection();  
    }
 
+   //Realiza la consulata de un usuario segun email y usuario, o solo por su email.
    public function get($email,$username =null){
       if($username){
          $sentence= $this->db->prepare("SELECT * FROM usuarios WHERE usuarios.email=? || usuarios.usuario=?");
@@ -21,6 +22,7 @@ class UserModel extends BaseModel{
       return ($user);
    }
 
+   //Devuelve todos los usuarios exepto el que es pasado por parametro.
    public function getAll($email){
       $sentence= $this->db->prepare("SELECT * FROM usuarios WHERE usuarios.email!=?");
       $sentence->execute([$email]); 
@@ -28,16 +30,19 @@ class UserModel extends BaseModel{
       return ($users);
    }
 
+   //Inserta un nuevo usuario.
    public function insert($email,$username,$password){
       $sentence= $this->db->prepare("INSERT INTO usuarios (email, usuario, password) VALUES(?,?,?)");
       $sentence->execute([$email,$username,$password]);
    }
 
+   //Elimina un ususario.
    public function delete($id){
       $sentence= $this->db->prepare("DELETE FROM usuarios WHERE id_usuario=?");
       $sentence->execute([$id]);
    }
 
+   //Cambia el rol de un ususario.
    public function confirmRole($role, $email){
       $sentence= $this->db->prepare("UPDATE usuarios SET administrador =  ? WHERE usuarios.email = ?");
       $sentence->execute([$role, $email]);

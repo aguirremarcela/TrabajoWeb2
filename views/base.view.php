@@ -8,6 +8,8 @@ class BaseView {
         if(session_status()!= PHP_SESSION_ACTIVE){
             session_start();
         }
+
+        //Asignamos variables con datos de la sesion. 
         if(isset($_SESSION['IS_LOGGED'])){
             $this->smarty->assign('user',$_SESSION['EMAIL']);
             $this->smarty->assign('userId',$_SESSION['ID_USER']);
